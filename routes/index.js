@@ -61,7 +61,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = server.listen(80, function () {
+var server = server.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -69,11 +69,13 @@ var server = server.listen(80, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
+var server   =   app.listen(3000,function(){
+    console.log("We have started our server on port 3000");
+});
+
 io.on('connection',function(socket){
     console.log("A user is connected");
 });
 
 
-
-module.exports = io;
 module.exports = express.Router();
