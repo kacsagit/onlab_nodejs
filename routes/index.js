@@ -27,7 +27,7 @@ app.get('/', function (req, res) {
             console.log('Error in query');
         } else {
             console.log("Success");
-            console.log(rows[0].Name)
+            console.log(rows[0].Name);
             res.json(rows);
         }
     });
@@ -60,8 +60,8 @@ app.get('/ab*cd', function (req, res) {
 
 var server = app.listen(8081, function () {
 
-    var host = server.address().address
-    var port = server.address().port
+    var host = server.address().address;
+    var port = server.address().port;
 
     console.log("Example app listening at http://%s:%s", host, port)
 });
