@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 var server  = require('http').createServer(app);
 var mysql = require('mysql');
-var io = require('socket.io').listen(server);
 
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -70,10 +69,6 @@ var server = server.listen(8081, function () {
 });
 
 
-
-io.on('connection',function(socket){
-    console.log("A user is connected");
-});
 
 
 module.exports = express.Router();
