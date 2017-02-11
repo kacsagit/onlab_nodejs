@@ -5,9 +5,9 @@ var mysql = require('mysql');
 var io = require('socket.io').listen(server);
 
 var connection = mysql.createConnection({
-    host: 'mysql145067-onlab.j.layershift.co.uk',
+    host: 'localhost',
     user: 'root',
-    password: 'blxhGCA5Y8',
+    password: '',
     database: 'sampleDB'
 });
 
@@ -24,8 +24,8 @@ connection.connect(function(error) {
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
-    res.send('get');
-  /*  connection.query("Select * from mySampleTable", function (error, rows, fields) {
+    //res.send('get');
+    connection.query("Select * from mySampleTable", function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query'+error);
         } else {
@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
             console.log(rows[0].Name);
             res.json(rows);
         }
-    });*/
+    });
 
 });
 
