@@ -5,10 +5,10 @@ var mysql = require('mysql');
 var io = require('socket.io').listen(server);
 
 var connection = mysql.createConnection({
-    host: 'mysql145069-onlab1.j.layershift.co.uk',
+    host: 'mysql145083-onlab.j.layershift.co.uk',
     //host: 'localhost',
     user: 'root',
-    password: 'LLIben31457',
+    password: ' IXVnmd42627',
     //password: '',
     database: 'sampleDB'
 });
