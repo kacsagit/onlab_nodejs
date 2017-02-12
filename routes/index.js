@@ -1,39 +1,39 @@
 var express = require('express');
 var app = express();
-var server  = require('http').createServer(app);
+var server = require('http').createServer(app);
 var mysql = require('mysql');
-var io = require('socket.io').listen(server);
-/*
+
 var connection = mysql.createConnection({
-    host: 'mysql145067-onlab.j.layershift.co.uk',
+    // host: 'mysql145067-onlab.j.layershift.co.uk',
+    host: 'localhost',
     user: 'root',
-    password: 'blxhGCA5Y8',
+    //  password: 'blxhGCA5Y8',
+    password: '',
     database: 'sampleDB'
 });
 
-connection.connect(function(error) {
+connection.connect(function (error) {
     if (!!error) {
         console.log(error);
     } else {
         console.log("Connected");
     }
 
-});*/
+});
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
-    res.send('get');
-    /*  connection.query("Select * from mySampleTable", function (error, rows, fields) {
-     if (!!error) {
-     console.log('Error in query'+error);
-     } else {
-     console.log("Success");
-     console.log(rows[0].Name);
-     res.json(rows);
-     }
-     });*/
+    connection.query("Select * from mySampleTable", function (error, rows, fields) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            console.log(rows[0].Name);
+            res.json(rows);
+        }
+    });
 
 });
 
@@ -69,11 +69,4 @@ var server = server.listen(8081, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
-io.on('connection',function(socket){
-    console.log("A user is connected");
-});
-
-
-
-module.exports = io;
 module.exports = express.Router();
