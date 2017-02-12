@@ -2,12 +2,13 @@ var express = require('express');
 var app = express();
 var server  = require('http').createServer(app);
 var mysql = require('mysql');
-var io = require('socket.io').listen(server);
 
 var connection = mysql.createConnection({
-    host: 'mysql145069-onlab1.j.layershift.co.uk',
+    //host: 'mysql145069-onlab1.j.layershift.co.uk',
+    host: 'localhost',
     user: 'root',
-    password: 'LLIben31457',
+    //password: 'LLIben31457',
+    password: '',
     database: 'sampleDB'
 });
 
@@ -24,8 +25,7 @@ connection.connect(function(error) {
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
-    res.send('get');
-  /*  connection.query("Select * from mySampleTable", function (error, rows, fields) {
+    connection.query("Select * from mySampleTable", function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query'+error);
         } else {
@@ -33,7 +33,7 @@ app.get('/', function (req, res) {
             console.log(rows[0].Name);
             res.json(rows);
         }
-    });*/
+    });
 
 });
 
@@ -67,10 +67,6 @@ var server = app.listen(8081, function () {
     var port = server.address().port;
 
     console.log("Example app listening at http://%s:%s", host, port)
-});
-
-io.on('connection',function(socket){
-    console.log("A user is connected");
 });
 
 
