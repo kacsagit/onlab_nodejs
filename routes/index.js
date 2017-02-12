@@ -4,9 +4,9 @@ var server  = require('http').createServer(app);
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    host: 'mysql145067-onlab.j.layershift.co.uk',
+    host: 'mysql145069-onlab1.j.layershift.co.uk',
     user: 'root',
-    password: 'blxhGCA5Y8',
+    password: 'LLIben31457',
     database: 'sampleDB'
 });
 
