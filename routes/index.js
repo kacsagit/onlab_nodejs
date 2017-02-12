@@ -3,13 +3,11 @@ var app = express();
 var server  = require('http').createServer(app);
 var mysql = require('mysql');
 var io = require('socket.io').listen(server);
-
+/*
 var connection = mysql.createConnection({
-    host: 'mysql145083-onlab.j.layershift.co.uk',
-    //host: 'localhost',
+    host: 'mysql145067-onlab.j.layershift.co.uk',
     user: 'root',
-    password: ' IXVnmd42627',
-    //password: '',
+    password: 'blxhGCA5Y8',
     database: 'sampleDB'
 });
 
@@ -20,22 +18,22 @@ connection.connect(function(error) {
         console.log("Connected");
     }
 
-});
+});*/
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
     res.send('get');
-    /*connection.query("Select * from mySampleTable", function (error, rows, fields) {
-        if (!!error) {
-            console.log('Error in query'+error);
-        } else {
-            console.log("Success");
-            console.log(rows[0].Name);
-            res.json(rows);
-        }
-    });*/
+    /*  connection.query("Select * from mySampleTable", function (error, rows, fields) {
+     if (!!error) {
+     console.log('Error in query'+error);
+     } else {
+     console.log("Success");
+     console.log(rows[0].Name);
+     res.json(rows);
+     }
+     });*/
 
 });
 
@@ -63,7 +61,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = server.listen(3000, function () {
+var server = server.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -71,17 +69,11 @@ var server = server.listen(3000, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
-/*var server = app.listen(, function () {
-
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log("Example app listening at http://%s:%s", host, port)
-});
-*/
 io.on('connection',function(socket){
     console.log("A user is connected");
 });
+
+
 
 module.exports = io;
 module.exports = express.Router();
