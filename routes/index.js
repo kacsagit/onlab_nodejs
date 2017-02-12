@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var server  = require('http').createServer(app);
 var mysql = require('mysql');
+var io = require('socket.io').listen(server);
 
 var connection = mysql.createConnection({
     host: 'mysql145069-onlab1.j.layershift.co.uk',
@@ -23,8 +24,8 @@ connection.connect(function(error) {
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
-    //res.send('get');
-    connection.query("Select * from mySampleTable", function (error, rows, fields) {
+    res.send('get');
+  /*  connection.query("Select * from mySampleTable", function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query'+error);
         } else {
@@ -32,7 +33,7 @@ app.get('/', function (req, res) {
             console.log(rows[0].Name);
             res.json(rows);
         }
-    });
+    });*/
 
 });
 
@@ -60,7 +61,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = server.listen(8081, function () {
+var server = app.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -68,7 +69,9 @@ var server = server.listen(8081, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
-
+io.on('connection',function(socket){
+    console.log("A user is connected");
+});
 
 
 module.exports = express.Router();
