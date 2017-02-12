@@ -63,7 +63,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = server.listen(80, function () {
+var server = server.listen(3000, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -71,14 +71,14 @@ var server = server.listen(80, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
-var server = app.listen(80, function () {
+/*var server = app.listen(, function () {
 
     var host = server.address().address;
     var port = server.address().port;
 
     console.log("Example app listening at http://%s:%s", host, port)
 });
-
+*/
 io.on('connection',function(socket){
     console.log("A user is connected");
 });
