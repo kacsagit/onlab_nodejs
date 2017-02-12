@@ -4,11 +4,11 @@ var server  = require('http').createServer(app);
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-    //host: 'mysql145069-onlab1.j.layershift.co.uk',
-    host: 'localhost',
+    host: 'mysql145069-onlab1.j.layershift.co.uk',
+    //host: 'localhost',
     user: 'root',
-    //password: 'LLIben31457',
-    password: '',
+    password: 'LLIben31457',
+    //password: '',
     database: 'sampleDB'
 });
 
@@ -61,7 +61,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = app.listen(8081, function () {
+var server = server.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
