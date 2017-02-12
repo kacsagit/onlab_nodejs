@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').createServer(app);
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
+/*var connection = mysql.createConnection({
     // host: 'mysql145067-onlab.j.layershift.co.uk',
     host: 'localhost',
     user: 'root',
@@ -19,13 +19,15 @@ connection.connect(function (error) {
         console.log("Connected");
     }
 
-});
+});*/
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
-    connection.query("Select * from mySampleTable", function (error, rows, fields) {
+
+    res.send('Hello GET');
+    /*connection.query("Select * from mySampleTable", function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
@@ -33,7 +35,7 @@ app.get('/', function (req, res) {
             console.log(rows[0].Name);
             res.json(rows);
         }
-    });
+    });*/
 
 });
 
