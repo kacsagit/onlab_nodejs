@@ -63,7 +63,7 @@ app.get('/ab*cd', function (req, res) {
     res.send('Page Pattern Match');
 });
 
-var server = server.listen(80, function () {
+var server = server.listen(3000, function () {
 
     var host = server.address().address;
     var port = server.address().port;
