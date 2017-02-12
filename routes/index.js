@@ -71,7 +71,7 @@ var server = server.listen(8081, function () {
     console.log("Example app listening at http://%s:%s", host, port)
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(8081, function () {
 
     var host = server.address().address;
     var port = server.address().port;
@@ -83,4 +83,5 @@ io.on('connection',function(socket){
     console.log("A user is connected");
 });
 
+module.exports = io;
 module.exports = express.Router();
