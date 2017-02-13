@@ -23,7 +23,6 @@ var connection = mysql.createConnection({
 var connection;
 
 function handleDisconnect() {
-    connection = mysql.createConnection(db_config);
 
     connection.connect(function (error) {
         if (!!error) {
