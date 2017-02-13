@@ -12,17 +12,19 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-var connection = mysql.createConnection({
+var db_config = {
 
     host: 'us-cdbr-iron-east-04.cleardb.net',
     user: 'bea824782eebcb',
     password: 'c8e130b4',
     database: 'heroku_9cfec1cbd3c0c63'
-});
+}
 
 var connection;
 
 function handleDisconnect() {
+    connection = mysql.createConnection(db_config); // Recreate the connection, since
+                                                    // the old one cannot be reused.
 
     connection.connect(function (error) {
         if (!!error) {
