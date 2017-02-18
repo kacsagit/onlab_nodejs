@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var mysql = require('mysql');
+var bodyParser = require('body-parser')
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -63,13 +64,18 @@ handleDisconnect();
 
     });
 
+// parse application/json
+app.use(bodyParser.json())
+
 // This responds a POST request for the homepage
     app.post('/', function (req, res) {
         console.log("Got a POST request for the homepage");
         //res.send('Hello  POST');
-        connection.query("INSERT INTO table_name (ID,Name) VALUES (null,narancs);",function (error,result) {
+        console.log(req.body);
+        var post  = {ID: null, Name: req.body.Name};
+        connection.query("INSERT INTO mySampleTable SET ?",post,function (error,result) {
             if (!!error) {
-                console.log('Error in query' + error);
+                console.log('Error in query' + error);;
             } else {
                 console.log("Success");
                 console.log(result.insertId);
