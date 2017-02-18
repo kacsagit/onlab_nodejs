@@ -66,7 +66,16 @@ handleDisconnect();
 // This responds a POST request for the homepage
     app.post('/', function (req, res) {
         console.log("Got a POST request for the homepage");
-        res.send('Hello  POST');
+        //res.send('Hello  POST');
+        connection.query("INSERT INTO table_name (ID,Name) VALUES (null,narancs);",function (error,result) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                console.log(result.insertId);
+                res.json(result.insertId);
+            }
+        });
     });
 
 // This responds a DELETE request for the /del_user page.
