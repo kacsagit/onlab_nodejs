@@ -52,12 +52,11 @@ handleDisconnect();
     app.get('/', function (req, res) {
         console.log("Got a GET request for the homepage");
 
-        connection.query("Select * from mySampleTable", function (error, rows, fields) {
+        connection.query("Select * from onlab", function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
                 console.log("Success");
-                console.log(rows[0].Name);
                 res.json(rows);
             }
         });
@@ -72,8 +71,8 @@ app.use(bodyParser.json())
         console.log("Got a POST request for the homepage");
         //res.send('Hello  POST');
         console.log(req.body);
-        var post  = {ID: null, Name: req.body.Name};
-        connection.query("INSERT INTO mySampleTable SET ?",post,function (error,result) {
+        var post  = {latitude: req.body.latitude, longitude: req.body.longitude};
+        connection.query("INSERT INTO onlab SET ?",post,function (error,result) {
             if (!!error) {
                 console.log('Error in query' + error);;
             } else {
