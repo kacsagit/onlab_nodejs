@@ -78,7 +78,7 @@ app.use(bodyParser.json())
             } else {
                 console.log("Success");
                 console.log(result.insertId);
-               // res.json(result.insertId);
+                res.json(result.insertId);
             }
         });
     });
