@@ -71,7 +71,7 @@ app.use(bodyParser.json())
         console.log("Got a POST request for the homepage");
         //res.send('Hello  POST');
         console.log(req.body);
-        var post  = {latitude: req.body.latitude, longitude: req.body.longitude ,place: req.body.place};
+        var post  = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude ,place: req.body.place};
         connection.query("INSERT INTO onlab SET ?",post,function (error,result) {
             if (!!error) {
                 console.log('Error in query' + error);;
