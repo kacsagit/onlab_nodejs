@@ -78,7 +78,15 @@ passport.use(new FacebookTokenStrategy({
                 console.log("Rows"+rows.length+" "+user.email);
                 console.log("There is no such user, adding now");
                 var post = {name: user.name, mail: user.email};
-                connection.query("INSERT into fb_login SET ?", post);
+                connection.query("INSERT into fb_login SET ?", post, function (error, result){
+                    if (!!error) {
+                        console.log('Error in query' + error);
+                    } else {
+                        console.log("Success");
+                        console.log(result.insertId);
+                        user.id=(result.insertId);
+                    }
+                });
             }
             else {
                 console.log("User already exists in database");
@@ -93,7 +101,7 @@ app.get('/auth/facebook/token',
     passport.authenticate('facebook-token'),
     function (req, res) {
         // do something with req.user
-        var user=req.user;
+       // var user=req.user;
         console.log(req.user);
       //  res.send(req.user ? 200 : 401)
         var post = {id:user.id, name: user.name, mail: user.email};
