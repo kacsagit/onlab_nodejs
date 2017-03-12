@@ -56,6 +56,13 @@ FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
 
 passport.use(new FacebookTokenStrategy({
         clientID: FACEBOOK_APP_ID,
