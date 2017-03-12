@@ -62,7 +62,8 @@ passport.use(new FacebookTokenStrategy({
     }
 ));
 
-app.post('/auth/facebook/token',
+
+app.get('/auth/facebook/token',
     passport.authenticate('facebook-token'),
     function (req, res) {
         // do something with req.user
@@ -102,7 +103,6 @@ app.post('/', function (req, res) {
     connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
-            ;
         } else {
             console.log("Success");
             console.log(result.insertId);
