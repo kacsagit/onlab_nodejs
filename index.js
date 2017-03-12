@@ -70,7 +70,7 @@ passport.use(new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
 
     var user = profile._json;
-    connection.query("Select * from fb_login where mail=?", user.email, function (error, rows, fields) {
+    connection.query("Select id from fb_login where mail=?", user.email, function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
@@ -90,6 +90,7 @@ passport.use(new FacebookTokenStrategy({
             }
             else {
                 console.log("User already exists in database");
+                user.id=(rows[0].insertId);
             }
         }
     });
