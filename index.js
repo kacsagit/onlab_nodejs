@@ -55,10 +55,14 @@ FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
 passport.use(new FacebookTokenStrategy({
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET
-    }, function(accessToken, refreshToken, profile, done) {
-        User.findOrCreate({facebookId: profile.id}, function (error, user) {
-            return done(error, user);
-        });
+    }, function (accessToken, refreshToken, profile, done) {
+        if (profile) {
+            user = profile;
+            return done(null, user);
+        }
+        else {
+            return done(null, false);
+        }
     }
 ));
 
@@ -68,10 +72,9 @@ app.get('/auth/facebook/token',
     function (req, res) {
         // do something with req.user
         console.log("req.user");
-        res.send(req.user? 200 : 401);
+        res.send(req.user ? 200 : 401);
     }
 );
-
 
 
 handleDisconnect();
