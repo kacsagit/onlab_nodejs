@@ -3,7 +3,11 @@ var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
 var mysql = require('mysql');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+
+var passport = require('passport');
+var FacebookTokenStrategy = require('passport-facebook-token');
+fbsdk = require('facebook-sdk');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -36,76 +40,100 @@ function handleDisconnect() {
 
     });
 
-    connection.on('error', function(err) {
+    connection.on('error', function (err) {
         console.log('db error', err);
-        if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
             handleDisconnect();                         // lost due to either server restart, or a
         } else {                                      // connnection idle timeout (the wait_timeout
             throw err;                                  // server variable configures this)
         }
     });
 }
+FACEBOOK_APP_ID = '1675013179474840';
+FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
+
+passport.use(new FacebookTokenStrategy({
+        clientID: FACEBOOK_APP_ID,
+        clientSecret: FACEBOOK_APP_SECRET
+    }, function(accessToken, refreshToken, profile, done) {
+        User.findOrCreate({facebookId: profile.id}, function (error, user) {
+            return done(error, user);
+        });
+    }
+));
+
+app.post('/auth/facebook/token',
+    passport.authenticate('facebook-token'),
+    function (req, res) {
+        // do something with req.user
+        console.log("req.user");
+        res.send(req.user? 200 : 401);
+    }
+);
+
+
 
 handleDisconnect();
 
 // This responds with "Hello World" on the homepage
-    app.get('/', function (req, res) {
-        console.log("Got a GET request for the homepage");
+app.get('/', function (req, res) {
+    console.log("Got a GET request for the homepage");
 
-        connection.query("Select * from onlab", function (error, rows, fields) {
-            if (!!error) {
-                console.log('Error in query' + error);
-            } else {
-                console.log("Success");
-                res.json(rows);
-            }
-        });
-
+    connection.query("Select * from onlab", function (error, rows, fields) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            res.json(rows);
+        }
     });
+
+});
 
 // parse application/json
 app.use(bodyParser.json())
 
 // This responds a POST request for the homepage
-    app.post('/', function (req, res) {
-        console.log("Got a POST request for the homepage");
-        //res.send('Hello  POST');
-        console.log(req.body);
-        var post  = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude ,place: req.body.place};
-        connection.query("INSERT INTO onlab SET ?",post,function (error,result) {
-            if (!!error) {
-                console.log('Error in query' + error);;
-            } else {
-                console.log("Success");
-                console.log(result.insertId);
-                res.json(result.insertId);
-            }
-        });
+app.post('/', function (req, res) {
+    console.log("Got a POST request for the homepage");
+    //res.send('Hello  POST');
+    console.log(req.body);
+    var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
+    connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
+        if (!!error) {
+            console.log('Error in query' + error);
+            ;
+        } else {
+            console.log("Success");
+            console.log(result.insertId);
+            res.json(result.insertId);
+        }
     });
+});
 
 // This responds a DELETE request for the /del_user page.
-    app.delete('/del_user', function (req, res) {
-        console.log("Got a DELETE request for /del_user");
-        res.send('Hello DELETE');
-    });
+app.delete('/del_user', function (req, res) {
+    console.log("Got a DELETE request for /del_user");
+    res.send('Hello DELETE');
+});
 
 // This responds a GET request for the /list_user page.
-    app.get('/list_user', function (req, res) {
-        console.log("Got a GET request for /list_user");
-        res.send('Page Listing');
-    });
+app.get('/list_user', function (req, res) {
+    console.log("Got a GET request for /list_user");
+    res.send('Page Listing');
+});
 
 // This responds a GET request for abcd, abxcd, ab123cd, and so on
-    app.get('/ab*cd', function (req, res) {
-        console.log("Got a GET request for /ab*cd");
-        res.send('Page Pattern Match');
-    });
+app.get('/ab*cd', function (req, res) {
+    console.log("Got a GET request for /ab*cd");
+    res.send('Page Pattern Match');
+});
 
 
-    app.get('/cool', function (request, response) {
-        response.send(cool());
-    });
+app.get('/cool', function (request, response) {
+    response.send(cool());
+});
 
-    app.listen(app.get('port'), function () {
-        console.log('Node app is running on port', app.get('port'));
-    });
+app.listen(app.get('port'), function () {
+    console.log('Node app is running on port', app.get('port'));
+});
