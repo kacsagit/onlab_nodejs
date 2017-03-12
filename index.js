@@ -75,10 +75,10 @@ passport.use(new FacebookTokenStrategy({
             console.log('Error in query' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows"+rows.length+" "+user.id);
+                console.log("Rows"+rows.length+" "+user.mail);
                 console.log("There is no such user, adding now");
-                var post = {id: user.id, name: user.name, mail: user.email};
-                connection.query("INSERT into fb_login SET ? ", post);
+                var post = {name: user.name, mail: user.email};
+                connection.query("INSERT into fb_login SET ?", post);
             }
             else {
                 console.log("User already exists in database");
