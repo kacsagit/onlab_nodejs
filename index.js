@@ -70,7 +70,7 @@ passport.use(new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
 
     var user = profile._json;
-    connection.query("Select * from fb_login where id=?", [user.id], function (error, rows, fields) {
+    connection.query("Select * from fb_login where mail=?", user.mail, function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
