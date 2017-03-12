@@ -97,7 +97,8 @@ app.get('/auth/facebook/token',
         console.log(req.user);
       //  res.send(req.user ? 200 : 401)
         var post = {id:user.id, name: user.name, mail: user.email};
-        res.json(post);
+        res.send("DD");
+        //res.json(post);
     }
 );
 
