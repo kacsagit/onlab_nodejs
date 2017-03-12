@@ -85,7 +85,7 @@ passport.use(new FacebookTokenStrategy({
             }
         }
     });
-    return done(null, profile);
+    return done(null, user);
 }));
 
 
