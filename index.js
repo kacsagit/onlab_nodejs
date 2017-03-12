@@ -5,6 +5,7 @@ var server = require('http').createServer(app);
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
 
+
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 fbsdk = require('facebook-sdk');
@@ -51,6 +52,10 @@ function handleDisconnect() {
 }
 FACEBOOK_APP_ID = '1675013179474840';
 FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 passport.use(new FacebookTokenStrategy({
         clientID: FACEBOOK_APP_ID,
