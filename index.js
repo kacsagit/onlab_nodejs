@@ -84,13 +84,13 @@ passport.use(new FacebookTokenStrategy({
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
-                        user.id=(result.insertId);
+                        user.id=result.insertId;
                     }
                 });
             }
             else {
                 console.log("User already exists in database");
-                user.id=(rows[0].insertId);
+                user.id=rows[0].insertId;
             }
         }
     });
