@@ -93,8 +93,11 @@ app.get('/auth/facebook/token',
     passport.authenticate('facebook-token'),
     function (req, res) {
         // do something with req.user
+        var user=req.user;
         console.log(req.user);
-        res.send(req.user ? 200 : 401);
+      //  res.send(req.user ? 200 : 401)
+        var post = {id:user.id, name: user.name, mail: user.email};
+        res.json(post);
     }
 );
 
