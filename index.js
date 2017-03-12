@@ -70,12 +70,12 @@ passport.use(new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
 
     var user = profile._json;
-    connection.query("Select * from fb_login where mail=?", [user.mail], function (error, rows, fields) {
+    connection.query("Select * from fb_login where mail=?", user.mail, function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows"+rows.length+" "+user.mail);
+                console.log("Rows"+rows.length+" "+user.email);
                 console.log("There is no such user, adding now");
                 var post = {name: user.name, mail: user.email};
                 connection.query("INSERT into fb_login SET ?", post);
