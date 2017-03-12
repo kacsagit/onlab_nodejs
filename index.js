@@ -56,27 +56,36 @@ FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.deserializeUser(function(user, done) {
+passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
 passport.use(new FacebookTokenStrategy({
-        clientID: FACEBOOK_APP_ID,
-        clientSecret: FACEBOOK_APP_SECRET
-    }, function (accessToken, refreshToken, profile, done) {
-        if (profile) {
-            user = profile;
-            return done(null, user);
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET
+}, function (accessToken, refreshToken, profile, done) {
+
+    var user = profile._json;
+    connection.query("Select * from fb_login where id=?", user.id, function (error, rows, fields) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            if (rows.length === 0) {
+                console.log("There is no such user, adding now");
+                var post = {id: user.id, name: user.name, mail: user.email};
+                connection.query("INSERT into fb_login SET ? ", post);
+            }
+            else {
+                console.log("User already exists in database");
+            }
         }
-        else {
-            return done(null, false);
-        }
-    }
-));
+    });
+    return done(null, profile);
+}));
 
 
 app.get('/auth/facebook/token',
