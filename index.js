@@ -115,7 +115,8 @@ var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googl
 var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        callbackURL: 'https://still-dawn-67153.herokuapp.com/auth/google/callback'
     },
     function (accessToken, refreshToken, profile, done) {
         console.log("itt");
@@ -124,9 +125,12 @@ passport.use(new GoogleStrategy({
 ));
 
 app.get('/auth/google',
-    passport.authenticate('google', {scope: ['email profile']}));
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        res.redirect('/');
+    });
 
-app.get('/auth/google/token',
+app.get('/auth/google/callback',
     passport.authenticate('google'),
     function (req, res) {
         // Authenticated successfully

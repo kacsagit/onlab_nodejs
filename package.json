@@ -24,8 +24,8 @@
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
     "passport-facebook-token": "3.3.0",
-    "serve-favicon": "~2.3.2",
-    "passport-google-oauth": "^0.2.0"
+    "passport-google-oauth": "^0.2.0",
+    "serve-favicon": "~2.3.2"
   },
   "repository": {
     "type": "git",
