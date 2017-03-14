@@ -124,10 +124,10 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-app.get('/auth/google',
+app.get('/auth/googletoken',
     passport.authenticate('google', { scope: ['email profile'] }));
 
-app.get('/auth/google/tokeninfo',
+app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
         // Authenticated successfully
