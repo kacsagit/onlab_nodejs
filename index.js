@@ -4,10 +4,9 @@ var app = express();
 var server = require('http').createServer(app);
 var mysql = require('mysql');
 var bodyParser = require('body-parser');
-
-
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 fbsdk = require('facebook-sdk');
 
 app.set('port', (process.env.PORT || 5000));
@@ -27,6 +26,9 @@ var db_config = {
 }
 
 var connection;
+
+
+
 
 function handleDisconnect() {
     connection = mysql.createConnection(db_config); // Recreate the connection, since
@@ -109,6 +111,28 @@ app.get('/auth/facebook/token',
         res.json(post);
     }
 );
+
+
+var GOOGLE_CLIENT_ID="179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET="Uxx0Uw2r7VprQaLDktNY6cvf";
+passport.use(new GoogleStrategy({
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET
+    },
+    function(accessToken, refreshToken, profile, done) {
+        return done(null, profile);
+    }
+));
+
+app.get('/auth/google',
+    passport.authenticate('google', { scope: ['email profile'] }));
+
+app.get('/auth/google/tokeninfo',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+        // Authenticated successfully
+        res.send(req.user ? 200 : 401)
+    });
 
 
 handleDisconnect();
