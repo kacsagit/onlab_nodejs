@@ -126,7 +126,7 @@ app.get('/auth/google',
     passport.authenticate('google', {scope: ['email profile']}));
 
 app.get('/auth/google/token',
-    passport.authenticate('google', {failureRedirect: '/login'}),
+    passport.authenticate('google',
     function (req, res) {
         // Authenticated successfully
         console.log("fdfgd");
