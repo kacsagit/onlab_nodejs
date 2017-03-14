@@ -28,8 +28,6 @@ var db_config = {
 var connection;
 
 
-
-
 function handleDisconnect() {
     connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                     // the old one cannot be reused.
@@ -77,22 +75,22 @@ passport.use(new FacebookTokenStrategy({
             console.log('Error in query' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows"+rows.length+" "+user.email);
+                console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
                 var post = {name: user.name, mail: user.email};
-                connection.query("INSERT into fb_login SET ?", post, function (error, result){
+                connection.query("INSERT into fb_login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query' + error);
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
-                        user.id=result.insertId;
+                        user.id = result.insertId;
                     }
                 });
             }
             else {
                 console.log("User already exists in database");
-                user.id=rows[0].insertId;
+                user.id = rows[0].insertId;
             }
         }
     });
@@ -104,36 +102,37 @@ app.get('/auth/facebook/token',
     passport.authenticate('facebook-token'),
     function (req, res) {
         // do something with req.user
-        var user=req.user;
+        var user = req.user;
         console.log(user);
-      //  res.send(req.user ? 200 : 401)
-        var post = {id:user.id, name: user.name, mail: user.email};
+        //  res.send(req.user ? 200 : 401)
+        var post = {id: user.id, name: user.name, mail: user.email};
         res.json(post);
     }
 );
 
 
-var GOOGLE_CLIENT_ID="179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET="Uxx0Uw2r7VprQaLDktNY6cvf";
+var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 passport.use(new GoogleStrategy({
         clientID: GOOGLE_CLIENT_ID,
         clientSecret: GOOGLE_CLIENT_SECRET
     },
-    function(accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, profile, done) {
         return done(null, profile);
     }
 ));
 
-app.get('/auth/googletoken',
-    passport.authenticate('google', { scope: ['email profile'] }));
+app.get('/auth/google',
+    passport.authenticate('google', {scope: ['email profile']}));
 
-app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
+app.get('/auth/google/token',
+    passport.authenticate('google', {failureRedirect: '/login'}),
+    function (req, res) {
         // Authenticated successfully
         console.log(req.user);
         res.send(req.user ? 200 : 401)
-    });
+    }
+);
 
 
 handleDisconnect();
