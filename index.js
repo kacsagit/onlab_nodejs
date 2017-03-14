@@ -131,6 +131,7 @@ app.get('/auth/google/tokeninfo',
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
         // Authenticated successfully
+        console.log(req.user);
         res.send(req.user ? 200 : 401)
     });
 
