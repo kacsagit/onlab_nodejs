@@ -127,6 +127,7 @@ passport.use(new GoogleStrategy({
 app.get('/auth/google',
     passport.authenticate('google', { failureRedirect: '/login' }),
     function(req, res) {
+        console.log("fdfgd");
         res.redirect('/');
     });
 
