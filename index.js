@@ -118,6 +118,7 @@ passport.use(new GoogleStrategy({
         clientSecret: GOOGLE_CLIENT_SECRET
     },
     function (accessToken, refreshToken, profile, done) {
+        console.log("itt");
         return done(null, profile);
     }
 ));
@@ -126,7 +127,7 @@ app.get('/auth/google',
     passport.authenticate('google', {scope: ['email profile']}));
 
 app.get('/auth/google/token',
-    passport.authenticate('google',
+    passport.authenticate('google'),
     function (req, res) {
         // Authenticated successfully
         console.log("fdfgd");
