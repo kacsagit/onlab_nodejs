@@ -129,6 +129,7 @@ app.get('/auth/google/token',
     passport.authenticate('google', {failureRedirect: '/login'}),
     function (req, res) {
         // Authenticated successfully
+        console.log("fdfgd");
         console.log(req.user);
         res.send(req.user ? 200 : 401)
     }
