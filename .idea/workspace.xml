@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4039efb-7f56-4c65-90f1-b2c328b0d15b" name="Default" comment="">
+    <list default="true" id="e4039efb-7f56-4c65-90f1-b2c328b0d15b" name="Default" comment="google login">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+            <state relative-caret-position="297">
+              <caret line="167" column="39" lean-forward="false" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -232,14 +232,7 @@
       <workItem from="1488632199334" duration="2293000" />
       <workItem from="1488900008376" duration="1983000" />
       <workItem from="1489315546482" duration="13614000" />
-      <workItem from="1489525462058" duration="19885000" />
-    </task>
-    <task id="LOCAL-00046" summary="facebook login">
-      <created>1489334016445</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1489334016445</updated>
+      <workItem from="1489525462058" duration="20771000" />
     </task>
     <task id="LOCAL-00047" summary="facebook login">
       <created>1489334215506</created>
@@ -577,11 +570,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489616109016</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="login">
+      <created>1489616407214</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1489616407214</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78403000" />
+    <option name="totallyTimeSpent" value="79289000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -644,9 +644,9 @@
     <MESSAGE value="post" />
     <MESSAGE value="post edit" />
     <MESSAGE value="facebook login" />
-    <MESSAGE value="google login" />
     <MESSAGE value="login" />
-    <option name="LAST_COMMIT_MESSAGE" value="login" />
+    <MESSAGE value="google login" />
+    <option name="LAST_COMMIT_MESSAGE" value="google login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -878,8 +878,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="297">
+          <caret line="167" column="39" lean-forward="false" selection-start-line="167" selection-start-column="39" selection-end-line="167" selection-end-column="39" />
           <folding />
         </state>
       </provider>

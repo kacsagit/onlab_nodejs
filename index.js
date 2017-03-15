@@ -151,6 +151,26 @@ function verify(token) {
         });
 };*/
 
+var GoogleTokenStrategy = require('passport-google-id-token');
+
+passport.use('google-id-token',new GoogleTokenStrategy({
+        clientID: GOOGLE_CLIENT_ID
+    },
+    function(parsedToken, googleId, done) {
+            return done(null, googleId);
+    }
+));
+
+app.post('/auth/google',
+    passport.authenticate('google-id-token'),
+    function (req, res) {
+        // do something with req.user
+        console.log("google-id-token");
+        console.log(req.user);
+       // res.send(req.user? 200 : 401);
+    }
+);
+
 handleDisconnect();
 
 var payload = { foo: 'bar' };
