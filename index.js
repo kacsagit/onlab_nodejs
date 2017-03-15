@@ -14,6 +14,7 @@ var jwt = require('jwt-simple');
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.bodyParser());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -66,7 +67,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-/*passport.use('facebook-token',new FacebookTokenStrategy({
+passport.use('facebook-token',new FacebookTokenStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
@@ -97,7 +98,7 @@ passport.deserializeUser(function (user, done) {
         }
     });
     return done(null, user);
-}));*/
+}));
 
 
 app.get('/auth/facebook/token',
@@ -174,6 +175,11 @@ app.post('/login',
         console.log(token);
         res.send(token);
     });
+
+app.post('/auth', function(req, res){
+    console.log("body parsing", req.body);
+    //should be something like: {username: YOURUSERNAME, password: YOURPASSWORD}
+});
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
