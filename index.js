@@ -70,7 +70,7 @@ passport.use('facebook-token',new FacebookTokenStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
-
+    console.log("facebook-token");
     var user = profile._json;
     connection.query("Select id from fb_login where mail=?", user.email, function (error, rows, fields) {
         if (!!error) {
@@ -154,7 +154,7 @@ var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 passport.use('local',new LocalStrategy(
     function(username, password, done) {
-            console.log(username);
+            console.log("local");
             return done(null, username);
 
     }
