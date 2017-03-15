@@ -66,7 +66,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.use('facebook-token',new FacebookTokenStrategy({
+/*passport.use('facebook-token',new FacebookTokenStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
@@ -97,7 +97,7 @@ passport.use('facebook-token',new FacebookTokenStrategy({
         }
     });
     return done(null, user);
-}));
+}));*/
 
 
 app.get('/auth/facebook/token',
