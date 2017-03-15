@@ -154,7 +154,7 @@ var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
-
+            console.log(username);
             return done(null, username);
 
     }
@@ -162,8 +162,7 @@ passport.use(new LocalStrategy(
 
 app.get('/login',
     function(req, res){
-        console.log(token);
-        res.send(token);
+        console.log("fail");
     });
 
 app.post('/login',
