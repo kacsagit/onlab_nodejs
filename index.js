@@ -117,19 +117,29 @@ var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 var auth = new GoogleAuth;
 var client = new auth.OAuth2(GOOGLE_CLIENT_ID, '', '');
 
-app.get('/auth/google/tokeninfo)',
-client.verifyIdToken(
-    token,
-    GOOGLE_CLIENT_ID,
-    // Or, if multiple clients access the backend:
-    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
-    function(e, login) {
-        var payload = login.getPayload();
-        var userid = payload['sub'];
-        console.log("itt");
-        // If request specified a G Suite domain:
-        //var domain = payload['hd'];
-    }));
+app.get('/auth/google/tokeninfo',function (req, res) {
+    // do something with req.user
+    verify(req.query.id_token);
+    var user = req.user;
+    console.log(user);
+    res.send(req.user ? 200 : 401)
+});
+
+
+function verify(token) {
+    client.verifyIdToken(
+        token,
+        GOOGLE_CLIENT_ID,
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
+        function (e, login) {
+            var payload = login.getPayload();
+            var userid = payload['sub'];
+            console.log("itt");
+            // If request specified a G Suite domain:
+            //var domain = payload['hd'];
+        });
+};
 
 handleDisconnect();
 
