@@ -116,7 +116,8 @@ var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 
 
 passport.use(new GoogleTokenStrategy({
-        clientID: GOOGLE_CLIENT_ID
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET
      //   getGoogleCerts: optionalCustomGetGoogleCerts
     },
     function(parsedToken, googleId, done) {
