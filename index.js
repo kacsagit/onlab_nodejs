@@ -117,7 +117,7 @@ var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 
 passport.use(new GoogleTokenStrategy({
         clientID: GOOGLE_CLIENT_ID
-       // getGoogleCerts: optionalCustomGetGoogleCerts
+        getGoogleCerts: optionalCustomGetGoogleCerts
     },
     function(parsedToken, googleId, done) {
             console.log(googleId);
@@ -125,7 +125,7 @@ passport.use(new GoogleTokenStrategy({
     }
 ));
 
-app.get('/auth/google',
+app.post('/auth/google',
     passport.authenticate('google-id-token'),
     function (req, res) {
         // do something with req.user
