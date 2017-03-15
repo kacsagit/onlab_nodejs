@@ -166,7 +166,7 @@ app.post('/auth/google',
     function (req, res) {
         // do something with req.user
         console.log("google-id-token");
-        console.log(req.user);
+        console.log(req);
        // res.send(req.user? 200 : 401);
     }
 );
