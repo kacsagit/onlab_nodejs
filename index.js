@@ -148,8 +148,8 @@ function verify(token) {
 handleDisconnect();
 
 var payload = { foo: 'bar' };
-var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
-
+//var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
+var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
 passport.use(new LocalStrategy(
