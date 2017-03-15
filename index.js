@@ -6,7 +6,6 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 fbsdk = require('facebook-sdk');
 var GoogleTokenStrategy = require('passport-google-id-token');
 
@@ -126,8 +125,7 @@ passport.use(new GoogleStrategy({
 ));
 
 passport.use(new GoogleTokenStrategy({
-        clientID: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET
+        clientID: GOOGLE_CLIENT_ID
        // getGoogleCerts: optionalCustomGetGoogleCerts
     },
     function(parsedToken, googleId, done) {
