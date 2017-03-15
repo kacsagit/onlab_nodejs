@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 fbsdk = require('facebook-sdk');
-var GoogleTokenStrategy = require('passport-google-id-token');
+var GoogleAuth = require('google-auth-library');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -114,27 +114,22 @@ app.get('/auth/facebook/token',
 var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 
+var auth = new GoogleAuth;
+var client = new auth.OAuth2(GOOGLE_CLIENT_ID, '', '');
 
-passport.use(new GoogleTokenStrategy({
-        clientID: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET
-     //   getGoogleCerts: optionalCustomGetGoogleCerts
-    },
-    function(parsedToken, googleId, done) {
-            console.log(googleId);
-            return done(err, user);
-    }
-));
-
-app.post('/auth/google',
-    passport.authenticate('google-id-token'),
-    function (req, res) {
-        // do something with req.user
-        console.log("ff");
-        res.send(req.user? 200 : 401);
-    }
-);
-
+app.get('/auth/google/tokeninfo)',
+client.verifyIdToken(
+    token,
+    GOOGLE_CLIENT_ID,
+    // Or, if multiple clients access the backend:
+    //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
+    function(e, login) {
+        var payload = login.getPayload();
+        var userid = payload['sub'];
+        console.log("itt");
+        // If request specified a G Suite domain:
+        //var domain = payload['hd'];
+    }));
 
 handleDisconnect();
 
