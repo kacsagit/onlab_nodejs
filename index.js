@@ -66,7 +66,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.use(new FacebookTokenStrategy({
+passport.use('facebook-token',new FacebookTokenStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
@@ -152,7 +152,7 @@ var payload = { foo: 'bar' };
 var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
-passport.use(new LocalStrategy(
+passport.use('local',new LocalStrategy(
     function(username, password, done) {
             console.log(username);
             return done(null, username);
