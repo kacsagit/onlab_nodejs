@@ -8,6 +8,7 @@ var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 fbsdk = require('facebook-sdk');
+var GoogleTokenStrategy = require('passport-google-id-token');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -124,20 +125,23 @@ passport.use(new GoogleStrategy({
     }
 ));
 
-app.get('/auth/google',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-        console.log("fdfgd");
-        res.redirect('/');
-    });
+passport.use(new GoogleTokenStrategy({
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET
+       // getGoogleCerts: optionalCustomGetGoogleCerts
+    },
+    function(parsedToken, googleId, done) {
+            console.log(googleId);
+            return done(err, user);
+    }
+));
 
-app.get('/auth/google/callback',
-    passport.authenticate('google'),
+app.get('/auth/google',
+    passport.authenticate('google-id-token'),
     function (req, res) {
-        // Authenticated successfully
-        console.log("fdfgd");
-        console.log(req.user);
-        res.send(req.user ? 200 : 401)
+        // do something with req.user
+        console.log("ff");
+        res.send(req.user? 200 : 401);
     }
 );
 
