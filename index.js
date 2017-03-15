@@ -8,8 +8,8 @@ var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 var LocalStrategy = require('passport-local').Strategy;
 fbsdk = require('facebook-sdk');
-var GoogleAuth = require('google-auth-library');
 var jwt = require('jwt-simple');
+var GoogleTokenStrategy = require('passport-google-id-token');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -120,38 +120,8 @@ app.get('/auth/facebook/token',
 
 
 var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 
-var auth = new GoogleAuth;
-var client = new auth.OAuth2(GOOGLE_CLIENT_ID, '', '');
 
-/*app.get('/auth/google/tokeninfo',function (req, res) {
-    // do something with req.user
-    var token=req.query.id_token;
-    console.log(token);
-    verify();
-    var user = req.user;
-    console.log(user);
-    res.send(req.user ? 200 : 401)
-});
-
-var token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjA5YThhNDY0NWZjZWNmNDk3ZDgyNjMwMGZjNjU0N2NlYWYyYTljODgifQ.eyJhenAiOiIxNzkxNTYyNjM4MzEtbTM5cGY4MDh0ZGs4NnY0OXU2bTlwZXA3ZTlrMW1nMjEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxNzkxNTYyNjM4MzEtMWZ0MHNpdXZjbzBzMW5hZGFqMzA3ZmNzdWkza2dzajYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTQzOTg0Mzk4MTQzODkzNzYwNDEiLCJlbWFpbCI6ImthdGFqb25hQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJpYXQiOjE0ODk1ODIwMzksImV4cCI6MTQ4OTU4NTYzOSwibmFtZSI6IkthdGEgSsOzbmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1KZUpxYnVUdHBjYy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQW9tdlYyREJRM0dpb29qS2tHSHlZaWZpdVhhbE9QX25nL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJLYXRhIiwiZmFtaWx5X25hbWUiOiJKw7NuYSIsImxvY2FsZSI6Imh1In0.YedKHc-_bD_BAM0VkEvlNeQLjTsxpRsCftfoQ6n44h2p0dNsFgt6HAMKDhg8OItPDo9w7-7GRUVyiqnkziNwlZo0l2rvrJkwylQ6MIG56suPfyED0YsUWbEqaPuYF95glstox2VBMFeUjnQdOuM9sdLaYIBN011KZmILPpEfK29W0_4zgBz2EV13ZVhgYvZW3VOhkd9kUB_IlZsOWIOIoJg0OzCFNS7xPXXgNsoMjQQUCYHLV7l8TLhxOGzeDqGbFwDek3h6N4yANcfmvsJI_Z_1-c09U5l4vR1RkJqEyYvxWIfDOqizpqQti0hV4XfoOlNDIqbsK6Qee_pMxp9SKQ";
-function verify(token) {
-    client.verifyIdToken(
-        token,
-        GOOGLE_CLIENT_ID,
-        // Or, if multiple clients access the backend:
-        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3],
-        function (e, login) {
-            var payload = login.getPayload();
-            var userid = payload['sub'];
-            console.log("itt");
-            // If request specified a G Suite domain:
-            //var domain = payload['hd'];
-        });
-};*/
-
-var GoogleTokenStrategy = require('passport-google-id-token');
 
 passport.use('google-id-token',new GoogleTokenStrategy({
         clientID: GOOGLE_CLIENT_ID
@@ -173,7 +143,6 @@ app.post('/auth/google',
 
 handleDisconnect();
 
-var payload = { foo: 'bar' };
 //var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
 var secret = 'fe1a1915a379f3be5394b64d14794932';
 
@@ -201,10 +170,6 @@ app.post('/login',
         res.send(token);
     });
 
-app.post('/auth', function(req, res){
-    console.log("body parsing", req.body);
-    //should be something like: {username: YOURUSERNAME, password: YOURPASSWORD}
-});
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
