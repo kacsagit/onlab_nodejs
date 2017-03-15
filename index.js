@@ -113,16 +113,7 @@ app.get('/auth/facebook/token',
 
 var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
-passport.use(new GoogleStrategy({
-        clientID: GOOGLE_CLIENT_ID,
-        clientSecret: GOOGLE_CLIENT_SECRET,
-        callbackURL: 'https://still-dawn-67153.herokuapp.com/auth/google/callback'
-    },
-    function (accessToken, refreshToken, profile, done) {
-        console.log("itt");
-        return done(null, profile);
-    }
-));
+
 
 passport.use(new GoogleTokenStrategy({
         clientID: GOOGLE_CLIENT_ID
