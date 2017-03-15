@@ -6,8 +6,10 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
+var LocalStrategy = require('passport-local').Strategy;
 fbsdk = require('facebook-sdk');
 var GoogleAuth = require('google-auth-library');
+var jwt = require('jwt-simple');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -23,7 +25,7 @@ var db_config = {
     user: 'bea824782eebcb',
     password: 'c8e130b4',
     database: 'heroku_9cfec1cbd3c0c63'
-}
+};
 
 var connection;
 
@@ -117,7 +119,7 @@ var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 var auth = new GoogleAuth;
 var client = new auth.OAuth2(GOOGLE_CLIENT_ID, '', '');
 
-app.get('/auth/google/tokeninfo',function (req, res) {
+/*app.get('/auth/google/tokeninfo',function (req, res) {
     // do something with req.user
     var token=req.query.id_token;
     console.log(token);
@@ -128,7 +130,7 @@ app.get('/auth/google/tokeninfo',function (req, res) {
 });
 
 var token="eyJhbGciOiJSUzI1NiIsImtpZCI6IjA5YThhNDY0NWZjZWNmNDk3ZDgyNjMwMGZjNjU0N2NlYWYyYTljODgifQ.eyJhenAiOiIxNzkxNTYyNjM4MzEtbTM5cGY4MDh0ZGs4NnY0OXU2bTlwZXA3ZTlrMW1nMjEuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxNzkxNTYyNjM4MzEtMWZ0MHNpdXZjbzBzMW5hZGFqMzA3ZmNzdWkza2dzajYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTQzOTg0Mzk4MTQzODkzNzYwNDEiLCJlbWFpbCI6ImthdGFqb25hQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJpYXQiOjE0ODk1ODIwMzksImV4cCI6MTQ4OTU4NTYzOSwibmFtZSI6IkthdGEgSsOzbmEiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDQuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1KZUpxYnVUdHBjYy9BQUFBQUFBQUFBSS9BQUFBQUFBQUFBQS9BQW9tdlYyREJRM0dpb29qS2tHSHlZaWZpdVhhbE9QX25nL3M5Ni1jL3Bob3RvLmpwZyIsImdpdmVuX25hbWUiOiJLYXRhIiwiZmFtaWx5X25hbWUiOiJKw7NuYSIsImxvY2FsZSI6Imh1In0.YedKHc-_bD_BAM0VkEvlNeQLjTsxpRsCftfoQ6n44h2p0dNsFgt6HAMKDhg8OItPDo9w7-7GRUVyiqnkziNwlZo0l2rvrJkwylQ6MIG56suPfyED0YsUWbEqaPuYF95glstox2VBMFeUjnQdOuM9sdLaYIBN011KZmILPpEfK29W0_4zgBz2EV13ZVhgYvZW3VOhkd9kUB_IlZsOWIOIoJg0OzCFNS7xPXXgNsoMjQQUCYHLV7l8TLhxOGzeDqGbFwDek3h6N4yANcfmvsJI_Z_1-c09U5l4vR1RkJqEyYvxWIfDOqizpqQti0hV4XfoOlNDIqbsK6Qee_pMxp9SKQ";
-function verify() {
+function verify(token) {
     client.verifyIdToken(
         token,
         GOOGLE_CLIENT_ID,
@@ -141,9 +143,37 @@ function verify() {
             // If request specified a G Suite domain:
             //var domain = payload['hd'];
         });
-};
+};*/
 
 handleDisconnect();
+
+var payload = { foo: 'bar' };
+var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
+
+
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+
+            return done(null, username);
+
+    }
+));
+
+app.get('/login',
+    function(req, res){
+        res.render('login');
+    });
+
+app.post('/login',
+    passport.authenticate('local', { failureRedirect: '/login' }),
+    function(req, res) {
+        //res.redirect('/');
+        var payload = { foo: res.username };
+        var token = jwt.encode(payload, secret);
+        console.log(token);
+        res.send(token);
+    });
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
