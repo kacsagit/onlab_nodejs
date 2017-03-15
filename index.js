@@ -162,7 +162,8 @@ passport.use(new LocalStrategy(
 
 app.get('/login',
     function(req, res){
-        res.render('login');
+        console.log(token);
+        res.send(token);
     });
 
 app.post('/login',
