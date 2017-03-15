@@ -119,7 +119,9 @@ var client = new auth.OAuth2(GOOGLE_CLIENT_ID, '', '');
 
 app.get('/auth/google/tokeninfo',function (req, res) {
     // do something with req.user
-    verify(req.query.id_token);
+    var token=req.query.id_token;
+    console.log(token)
+    verify(token);
     var user = req.user;
     console.log(user);
     res.send(req.user ? 200 : 401)
