@@ -14,7 +14,9 @@ var jwt = require('jwt-simple');
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
-app.use(express.bodyParser());
+// parse application/json
+app.use(bodyParser.json())
+
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
@@ -59,6 +61,9 @@ FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+
 passport.serializeUser(function (user, done) {
     done(null, user);
 });
@@ -196,8 +201,7 @@ app.get('/', function (req, res) {
 
 });
 
-// parse application/json
-app.use(bodyParser.json())
+
 
 // This responds a POST request for the homepage
 app.post('/', function (req, res) {
