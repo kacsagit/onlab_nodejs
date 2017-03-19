@@ -79,7 +79,7 @@ passport.deserializeUser(function (user, done) {
 
 
 function addUser(user, token) {
-    console.log(user.email);
+    console.log(user);
     connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
@@ -101,7 +101,7 @@ function addUser(user, token) {
             else {
                 connection.query("UPDATE LOGIN SET token=? where id=?", [token, rows[0].id], function (error, result) {
                     if (!!error) {
-                        console.log('Error in query insert' + error);
+                        console.log('Error in query update' + error);
                     } else {
                         console.log("User already exists in database");
                     }
@@ -159,8 +159,9 @@ app.post('/auth/google',
     function (req, res) {
         // do something with req.user
         console.log("google-id-token");
-        console.log(req.user);
-        res.json(req.user);
+        var user=req.user;
+        console.log(user);
+        res.json(user);
         // res.send(req.user? 200 : 401);
     }
 );
