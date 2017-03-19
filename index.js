@@ -148,6 +148,7 @@ passport.use('google-id-token', new GoogleTokenStrategy({
     function (parsedToken, googleId, done) {
         var user =  parsedToken.payload;
         var post = {id: user.id, name: user.name, mail: user.email};
+        console.log(googleId);
         addUser(post, googleId);
         return done(null, post);
     }
