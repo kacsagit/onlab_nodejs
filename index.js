@@ -199,7 +199,7 @@ passport.use('bearer', new BearerStrategy(
                 console.log('Error in query' + error);
             } else {
                 console.log('done' + user);
-                return done(null, user);
+                return done(null, user[0]);
             }
         });
         return done(null, null);
@@ -210,7 +210,7 @@ passport.use('bearer', new BearerStrategy(
 app.get('/get',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
-        console.log("id: " + req.user.id);
+        console.log("id: " + req.user);
         connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
@@ -219,7 +219,6 @@ app.get('/get',
                 res.json(rows);
             }
         });
-        res.json(req.user);
 
 
     });
