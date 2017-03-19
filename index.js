@@ -117,8 +117,10 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-    addUser(user, accessToken);
-    return done(null, user);
+
+    var post = {id: user.id, name: user.name, mail: user.email};
+    addUser(post, accessToken);
+    return done(null, post);
 }));
 
 
@@ -129,8 +131,7 @@ app.post('/auth/facebook/token',
         var user = req.user;
         console.log(user);
         //  res.send(req.user ? 200 : 401)
-        var post = {id: user.id, name: user.name, mail: user.email};
-        res.json(post);
+        res.json(user);
     }
 );
 
@@ -145,7 +146,10 @@ passport.use('google-id-token', new GoogleTokenStrategy({
 
     },
     function (parsedToken, googleId, done) {
-        return done(null, parsedToken.payload);
+        var user =  parsedToken.payload;
+        var post = {id: user.id, name: user.name, mail: user.email};
+        addUser(post, googleId);
+        return done(null, post);
     }
 ));
 
