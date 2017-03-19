@@ -12,6 +12,7 @@ var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
 var http = require("http");
 var BearerStrategy = require('passport-http-bearer').Strategy;
+var url = require('url');
 
 
 app.use(require('morgan')('combined'));
@@ -245,16 +246,11 @@ app.get('/',function (req, res) {
 // This responds a POST request for the homepage
 app.post('/',function (req, res) {
 
-    http.get('/',passport.authenticate('bearer', {session: false}),function (req, res){
         console.log("Got a POST request for the homepage");
-    });
 
-
-
-        console.log("Got a POST request for the homepage");
         //res.send('Hello  POST');
         console.log(req.body);
-        var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place ,ownerid: req.user.id};
+        var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
         connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
             if (!!error) {
                 console.log('Error in query' + error);
