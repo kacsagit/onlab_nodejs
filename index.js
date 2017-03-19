@@ -186,6 +186,7 @@ app.post('/login',
         console.log(token);
         var user = {email: req.user.username, password: req.user.password};
         addUser(user, token);
+        res.json(token);
     });
 
 
@@ -246,7 +247,9 @@ app.get('/',function (req, res) {
 // This responds a POST request for the homepage
 app.post('/',function (req, res) {
 
-        console.log("Got a POST request for the homepage");
+    var decoded = jwt.decode(token, secret);
+    console.log(decoded);
+    console.log("Got a POST request for the homepage");
 
         //res.send('Hello  POST');
         console.log(req.body);
