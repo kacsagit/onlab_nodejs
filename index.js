@@ -80,14 +80,14 @@ passport.deserializeUser(function (user, done) {
 
 function addUser(user, token) {
     console.log(user);
-    connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
+    connection.query("Select id from login where mail=?", [user.mail], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows" + rows.length + " " + user.email);
+                console.log("Rows" + rows.length + " " + user.mail);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email, password: user.password, token: token};
+                var post = {name: user.name, mail: user.mail, password: user.password, token: token};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query inser' + error);
@@ -194,7 +194,7 @@ app.post('/login',
         var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user = {email: req.user.username, password: req.user.password};
+        var user = {mail: req.user.username, password: req.user.password};
         addUser(user, token);
         res.json(token);
     });
