@@ -201,6 +201,7 @@ passport.use('bearer', new BearerStrategy(
                 return done(null, user);
             }
         });
+        return done(null, null);
     }
 ));
 
