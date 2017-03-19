@@ -167,7 +167,7 @@ app.post('/login',
         var payload = { foo: res.username };
         var token = jwt.encode(payload, secret);
         console.log(token);
-        res.send(token);
+        res.json(token);
     });
 
 
