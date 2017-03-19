@@ -116,7 +116,6 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-    user.password="";
     addUser(user,accessToken);
     return done(null, user);
 }));
@@ -184,7 +183,7 @@ app.post('/login',
         var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user={name: "", email: req.user.username, password: res.password};
+        var user={ email: req.user.username, password: res.password};
         addUser(user,token);
     });
 
