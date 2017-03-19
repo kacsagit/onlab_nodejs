@@ -150,10 +150,8 @@ passport.use('google-id-token', new GoogleTokenStrategy({
 ));
 
 app.post('/auth/google',
-
+    passport.authenticate('google-id-token'),
     function (req, res) {
-
-        console.log(req.body);
         // do something with req.user
         console.log("google-id-token");
         console.log(req);
