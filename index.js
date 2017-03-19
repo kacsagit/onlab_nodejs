@@ -236,10 +236,21 @@ app.get('/get',
     });
 
 
+
+app.get('/',function (req, res) {
+
+
+});
+
 // This responds a POST request for the homepage
-app.get('/',
-    passport.authenticate('bearer', {session: false}),
-    function (req, res) {
+app.post('/',function (req, res) {
+
+    http.get('/',passport.authenticate('bearer', {session: false}),function (req, res){
+        console.log("Got a POST request for the homepage");
+    });
+
+
+
         console.log("Got a POST request for the homepage");
         //res.send('Hello  POST');
         console.log(req.body);
