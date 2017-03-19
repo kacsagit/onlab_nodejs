@@ -101,7 +101,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
                 });
             }
             else {
-                connection.query("UPDATE LOGIN SET token=? where id=?",[accessToken, rows[0].id], function (error, result) {
+                connection.query("UPDATE LOGIN SET token=? where id=?", [accessToken, rows[0].id], function (error, result) {
                     console.log("User already exists in database");
                 });
             }
@@ -208,21 +208,21 @@ passport.use('bearer', new BearerStrategy(
 
 
 app.get('/get',
-    passport.authenticate('bearer', { session: false }),
-        function (req, res) {
-            console.log("id: " + req.user.id);
-            connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
-                if (!!error) {
-                    console.log('Error in query' + error);
-                } else {
-                    console.log("Success");
-                    res.json(rows);
-                }
-            });
-            res.json(req.user);
-        }
+    passport.authenticate('bearer', {session: false}),
+    function (req, res) {
+        console.log("id: " + req.user.id);
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+        res.json(req.user);
 
-});
+
+    });
 
 
 // This responds a POST request for the homepage
