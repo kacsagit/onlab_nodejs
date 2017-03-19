@@ -78,7 +78,8 @@ passport.deserializeUser(function (user, done) {
 
 
 function addUser(user,token){
-    connection.query("Select id from login where mail=?", user.email, function (error, rows, fields) {
+    console.log(user.email);
+    connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
         } else {
