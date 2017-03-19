@@ -97,7 +97,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
                 });
             }
             else {
-                connection.query("UPDATE LOGIN SET token=33 where id=?", rows[0].id, function (error, result) {
+                connection.query("UPDATE LOGIN SET token=? where id=?",accessToken, rows[0].id, function (error, result) {
                     console.log("User already exists in database");
                 });
             }
