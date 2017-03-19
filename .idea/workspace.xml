@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="117" column="29" lean-forward="false" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+            <state relative-caret-position="437">
+              <caret line="185" column="72" lean-forward="true" selection-start-line="185" selection-start-column="72" selection-end-line="185" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -245,14 +245,7 @@
       <workItem from="1488900008376" duration="1983000" />
       <workItem from="1489315546482" duration="13614000" />
       <workItem from="1489525462058" duration="23638000" />
-      <workItem from="1489931574557" duration="14688000" />
-    </task>
-    <task id="LOCAL-00081" summary="google login">
-      <created>1489574988036</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1489574988036</updated>
+      <workItem from="1489931574557" duration="14987000" />
     </task>
     <task id="LOCAL-00082" summary="google login">
       <created>1489576574658</created>
@@ -590,11 +583,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489948412206</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="logins">
+      <created>1489948521565</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1489948521565</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96844000" />
+    <option name="totallyTimeSpent" value="97143000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -932,8 +932,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="117" column="29" lean-forward="false" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="29" />
+        <state relative-caret-position="437">
+          <caret line="185" column="72" lean-forward="true" selection-start-line="185" selection-start-column="72" selection-end-line="185" selection-end-column="72" />
           <folding />
         </state>
       </provider>

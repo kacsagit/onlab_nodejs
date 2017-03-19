@@ -183,7 +183,7 @@ app.post('/login',
         var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user={ email: req.user.username, password: res.password};
+        var user={ email: req.user.username, password: res.user.password};
         addUser(user,token);
     });
 
