@@ -163,8 +163,9 @@ var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
 passport.use('local', new LocalStrategy(
-    function (user, password, done) {
+    function (username, password, done) {
         console.log("local");
+        var user={username:username,password:password};
         return done(null, user);
 
     }
@@ -179,6 +180,7 @@ app.post('/login',
     passport.authenticate('local', {failureRedirect: '/login'}),
     function (req, res) {
         //res.redirect('/');
+        console.log(req.user);
         var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
