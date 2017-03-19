@@ -10,7 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var fbsdk = require('facebook-sdk');
 var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
-var BearerStrategy = require('passport-http-bearer');
+var BearerStrategy = require('passport-http-bearer').Strategy;
 
 
 app.use(require('morgan')('combined'));
@@ -19,7 +19,7 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 // views is directory for all template files
