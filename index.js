@@ -85,7 +85,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email,token: accessToken};
+                var post = {name: user.name, mail: user.email, token: accessToken};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query' + error);
@@ -97,8 +97,9 @@ passport.use('facebook-token', new FacebookTokenStrategy({
                 });
             }
             else {
-                console.log("User already exists in database");
-                user.id = rows[0].insertId;
+                connection.query("UPDATE LOGIN SET token=22 where id=?", rows[0].id, function (error, result) {
+                    console.log("User already exists in database");
+                });
             }
         }
     });
@@ -189,8 +190,8 @@ app.get('/get', function (req, res) {
     console.log("Got a GET request for the homepage");
     passport.authenticate('bearer', {session: false}),
         function (req, res) {
-            console.log("id: "+req.user.id);
-            connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?",req.user.id, function (error, rows, fields) {
+            console.log("id: " + req.user.id);
+            connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
                 if (!!error) {
                     console.log('Error in query' + error);
                 } else {
@@ -203,7 +204,7 @@ app.get('/get', function (req, res) {
 
 });
 
-passport.use('bearer',new BearerStrategy(
+passport.use('bearer', new BearerStrategy(
     function (token, done) {
         connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
             if (!!error) {
