@@ -202,7 +202,6 @@ passport.use('bearer', new BearerStrategy(
                 return done(null, user[0]);
             }
         });
-        return done(null, null);
     }
 ));
 
