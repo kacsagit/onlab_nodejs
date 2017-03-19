@@ -186,8 +186,23 @@ app.get('/', function (req, res) {
 
 });
 
+
+passport.use('bearer', new BearerStrategy(
+    function (token, done) {
+        connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log('done' + user);
+                return done(null, user);
+            }
+        });
+    }
+));
+
+
 app.get('/get', function (req, res) {
-    console.log("Got a GET request for the homepage");
+    console.log("Got a GET request for the /get");
     passport.authenticate('bearer', {session: false}),
         function (req, res) {
             console.log("id: " + req.user.id);
@@ -203,18 +218,6 @@ app.get('/get', function (req, res) {
         }
 
 });
-
-passport.use('bearer', new BearerStrategy(
-    function (token, done) {
-        connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
-            if (!!error) {
-                console.log('Error in query' + error);
-            } else {
-                return done(null, user);
-            }
-        });
-    }
-));
 
 
 // This responds a POST request for the homepage
