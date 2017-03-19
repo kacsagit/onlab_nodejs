@@ -80,15 +80,15 @@ passport.deserializeUser(function (user, done) {
 function addUser(user,token){
     connection.query("Select id from login where mail=?", user.email, function (error, rows, fields) {
         if (!!error) {
-            console.log('Error in query' + error);
+            console.log('Error in query select email' + error);
         } else {
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email, token: token};
+                var post = {name: user.name, mail: user.email, passwor:user.password, token: token};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
-                        console.log('Error in query' + error);
+                        console.log('Error in query inser' + error);
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
@@ -98,7 +98,11 @@ function addUser(user,token){
             }
             else {
                 connection.query("UPDATE LOGIN SET token=? where id=?", [token, rows[0].id], function (error, result) {
-                    console.log("User already exists in database");
+                    if (!!error) {
+                        console.log('Error in query insert' + error);
+                    } else {
+                      console.log("User already exists in database");
+                    }
                 });
             }
         }
@@ -111,6 +115,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
+    user.password="";
     addUser(user,accessToken);
     return done(null, user);
 }));
@@ -176,7 +181,7 @@ app.post('/login',
         var payload = {foo: res.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user={email: res.username, password: res.password};
+        var user={name: "", email: res.username, password: res.password};
         addUser(user,token);
     });
 
