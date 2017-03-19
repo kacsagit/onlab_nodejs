@@ -76,20 +76,16 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.use('facebook-token', new FacebookTokenStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET
-}, function (accessToken, refreshToken, profile, done) {
-    console.log("facebook-token");
-    var user = profile._json;
+
+function addUser(user){
     connection.query("Select id from login where mail=?", user.email, function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows" + rows.length + " " + user.email);
+                console.log("Rows" + rows.length + " " + email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email, token: accessToken};
+                var post = {name: user.name, mail: email, token: accessToken};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query' + error);
@@ -107,6 +103,15 @@ passport.use('facebook-token', new FacebookTokenStrategy({
             }
         }
     });
+}
+
+passport.use('facebook-token', new FacebookTokenStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET
+}, function (accessToken, refreshToken, profile, done) {
+    console.log("facebook-token");
+    var user = profile._json;
+    addUser(user);
     return done(null, user);
 }));
 
