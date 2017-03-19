@@ -136,10 +136,13 @@ app.post('/auth/facebook/token',
 
 
 var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = "Uxx0Uw2r7VprQaLDktNY6cvf";
 
 
 passport.use('google-id-token', new GoogleTokenStrategy({
-        clientID: GOOGLE_CLIENT_ID
+        clientID: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET
+
     },
     function (parsedToken, googleId, done) {
         return done(null, parsedToken);
@@ -147,12 +150,14 @@ passport.use('google-id-token', new GoogleTokenStrategy({
 ));
 
 app.post('/auth/google',
-    passport.authenticate('google-id-token'),
+
     function (req, res) {
+
+        console.log(req.body);
         // do something with req.user
         console.log("google-id-token");
-        console.log(req.user);
-        res.json(req.user);
+        console.log(req.user.payload);
+        res.json(req.user.payload);
         // res.send(req.user? 200 : 401);
     }
 );
