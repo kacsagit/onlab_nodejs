@@ -78,7 +78,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-    connection.query("Select id from fb_login where mail=?", user.email, function (error, rows, fields) {
+    connection.query("Select id from login where mail=?", user.email, function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
