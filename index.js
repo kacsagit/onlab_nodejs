@@ -86,7 +86,7 @@ function addUser(user,token){
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email, passwor:user.password, token: token};
+                var post = {name: user.name, mail: user.email, password:user.password, token: token};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query inser' + error);
@@ -163,9 +163,9 @@ var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
 passport.use('local', new LocalStrategy(
-    function (username, password, done) {
+    function (user, password, done) {
         console.log("local");
-        return done(null, username);
+        return done(null, user);
 
     }
 ));
@@ -179,10 +179,10 @@ app.post('/login',
     passport.authenticate('local', {failureRedirect: '/login'}),
     function (req, res) {
         //res.redirect('/');
-        var payload = {foo: res.username};
+        var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user={name: "", email: res.username, password: res.password};
+        var user={name: "", email: req.user.username, password: res.password};
         addUser(user,token);
     });
 
