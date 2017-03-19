@@ -145,7 +145,7 @@ passport.use('google-id-token', new GoogleTokenStrategy({
 
     },
     function (parsedToken, googleId, done) {
-        return done(null, parsedToken);
+        return done(null, parsedToken. google-id-token.payload);
     }
 ));
 
@@ -156,8 +156,8 @@ app.post('/auth/google',
         console.log(req.body);
         // do something with req.user
         console.log("google-id-token");
-        console.log(req.user.payload);
-        res.json(req.user.payload);
+        console.log(req.user);
+        res.json(req.user);
         // res.send(req.user? 200 : 401);
     }
 );
