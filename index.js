@@ -10,6 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var fbsdk = require('facebook-sdk');
 var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
+var http = require("http");
 var BearerStrategy = require('passport-http-bearer').Strategy;
 
 
