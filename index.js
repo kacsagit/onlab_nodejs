@@ -145,7 +145,7 @@ passport.use('google-id-token', new GoogleTokenStrategy({
 
     },
     function (parsedToken, googleId, done) {
-        return done(null, parsedToken. google-id-token.payload);
+        return done(null, parsedToken);
     }
 ));
 
