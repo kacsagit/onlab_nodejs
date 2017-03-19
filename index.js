@@ -189,7 +189,7 @@ app.post('/login',
 
 
 // This responds with "Hello World" on the homepage
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
     console.log("Got a GET request for the homepage");
 
     connection.query("Select * from onlab", function (error, rows, fields) {
@@ -201,7 +201,7 @@ app.get('/', function (req, res) {
         }
     });
 
-});
+});*/
 
 
 passport.use('bearer', new BearerStrategy(
@@ -237,7 +237,7 @@ app.get('/get',
 
 
 // This responds a POST request for the homepage
-app.post('/',
+app.get('/',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
         console.log("Got a POST request for the homepage");
