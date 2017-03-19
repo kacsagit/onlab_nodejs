@@ -207,10 +207,8 @@ passport.use('bearer', new BearerStrategy(
 ));
 
 
-app.get('/get', function (req, res) {
-    console.log("Got a GET request for the /get");
-    console.log(req.headers);
-    passport.authenticate('bearer', {session: false}),
+app.get('/get',
+    passport.authenticate('bearer', { session: false }),
         function (req, res) {
             console.log("id: " + req.user.id);
             connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
