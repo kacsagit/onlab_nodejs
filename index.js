@@ -7,10 +7,13 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 var LocalStrategy = require('passport-local').Strategy;
-fbsdk = require('facebook-sdk');
+var fbsdk = require('facebook-sdk');
 var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
 var BearerStrategy = require('passport-http-bearer');
+
+
+app.use(require('morgan')('combined'));
 
 app.set('port', (process.env.PORT || 5000));
 
