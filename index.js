@@ -77,7 +77,7 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-function addUser(user,token){
+function addUser(user, token) {
     console.log(user.email);
     connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
         if (!!error) {
@@ -86,7 +86,7 @@ function addUser(user,token){
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email, password:user.password, token: token};
+                var post = {name: user.name, mail: user.email, password: user.password, token: token};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query inser' + error);
@@ -102,7 +102,7 @@ function addUser(user,token){
                     if (!!error) {
                         console.log('Error in query insert' + error);
                     } else {
-                      console.log("User already exists in database");
+                        console.log("User already exists in database");
                     }
                 });
             }
@@ -116,7 +116,7 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-    addUser(user,accessToken);
+    addUser(user, accessToken);
     return done(null, user);
 }));
 
@@ -164,7 +164,7 @@ var secret = 'fe1a1915a379f3be5394b64d14794932';
 passport.use('local', new LocalStrategy(
     function (username, password, done) {
         console.log("local");
-        var user={username:username,password:password};
+        var user = {username: username, password: password};
         return done(null, user);
 
     }
@@ -183,8 +183,8 @@ app.post('/login',
         var payload = {foo: req.user.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
-        var user={ email: req.user.username, password: res.user.password};
-        addUser(user,token);
+        var user = {email: req.user.username, password: req.user.password};
+        addUser(user, token);
     });
 
 
@@ -206,7 +206,7 @@ app.get('/', function (req, res) {
 
 passport.use('bearer', new BearerStrategy(
     function (token, done) {
-        console.log("Got bearer: "+ token);
+        console.log("Got bearer: " + token);
         connection.query("SELECT * FROM login l where l.token=?", [token], function (error, user) {
             if (!!error) {
                 console.log('Error in query' + error);
@@ -237,21 +237,23 @@ app.get('/get',
 
 
 // This responds a POST request for the homepage
-app.post('/', function (req, res) {
-    console.log("Got a POST request for the homepage");
-    //res.send('Hello  POST');
-    console.log(req.body);
-    var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
-    connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
-        if (!!error) {
-            console.log('Error in query' + error);
-        } else {
-            console.log("Success");
-            console.log(result.insertId);
-            res.json(result.insertId);
-        }
+app.post('/',
+    passport.authenticate('bearer', {session: false}),
+    function (req, res) {
+        console.log("Got a POST request for the homepage");
+        //res.send('Hello  POST');
+        console.log(req.body);
+        var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place ,ownerid: req.user.id};
+        connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                console.log(result.insertId);
+                res.json(result.insertId);
+            }
+        });
     });
-});
 
 
 app.get('/cool', function (request, response) {
