@@ -194,7 +194,7 @@ app.get('/', function (req, res) {
 passport.use('bearer', new BearerStrategy(
     function (token, done) {
         console.log("Got bearer");
-        connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
+        connection.query("SELECT * FROM login l where l.token=?", token, function (error, user) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
