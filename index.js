@@ -192,7 +192,6 @@ app.get('/', function (req, res) {
 
 passport.use('bearer', new BearerStrategy(
     function (token, done) {
-
         console.log("Got bearer");
         connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
             if (!!error) {
@@ -208,6 +207,7 @@ passport.use('bearer', new BearerStrategy(
 
 app.get('/get', function (req, res) {
     console.log("Got a GET request for the /get");
+    console.log(req.headers);
     passport.authenticate('bearer', {session: false}),
         function (req, res) {
             console.log("id: " + req.user.id);
