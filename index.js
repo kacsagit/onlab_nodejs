@@ -10,6 +10,7 @@ var LocalStrategy = require('passport-local').Strategy;
 fbsdk = require('facebook-sdk');
 var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
+var BearerStrategy = require('passport-http-bearer');
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -63,7 +64,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
 passport.serializeUser(function (user, done) {
     done(null, user);
 });
@@ -72,7 +72,7 @@ passport.deserializeUser(function (user, done) {
     done(null, user);
 });
 
-passport.use('facebook-token',new FacebookTokenStrategy({
+passport.use('facebook-token', new FacebookTokenStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET
 }, function (accessToken, refreshToken, profile, done) {
@@ -85,7 +85,7 @@ passport.use('facebook-token',new FacebookTokenStrategy({
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.email};
+                var post = {name: user.name, mail: user.email,token: accessToken};
                 connection.query("INSERT into fb_login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query' + error);
@@ -122,12 +122,11 @@ app.post('/auth/facebook/token',
 var GOOGLE_CLIENT_ID = "179156263831-1ft0siuvco0s1nadaj307fcsui3kgsj6.apps.googleusercontent.com";
 
 
-
-passport.use('google-id-token',new GoogleTokenStrategy({
+passport.use('google-id-token', new GoogleTokenStrategy({
         clientID: GOOGLE_CLIENT_ID
     },
-    function(parsedToken, googleId, done) {
-            return done(null, parsedToken);
+    function (parsedToken, googleId, done) {
+        return done(null, parsedToken);
     }
 ));
 
@@ -137,7 +136,7 @@ app.post('/auth/google',
         // do something with req.user
         console.log("google-id-token");
         console.log(req);
-       // res.send(req.user? 200 : 401);
+        // res.send(req.user? 200 : 401);
     }
 );
 
@@ -147,24 +146,24 @@ handleDisconnect();
 var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
-passport.use('local',new LocalStrategy(
-    function(username, password, done) {
-            console.log("local");
-            return done(null, username);
+passport.use('local', new LocalStrategy(
+    function (username, password, done) {
+        console.log("local");
+        return done(null, username);
 
     }
 ));
 
 app.get('/login',
-    function(req, res){
+    function (req, res) {
         console.log("fail");
     });
 
 app.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
-    function(req, res) {
+    passport.authenticate('local', {failureRedirect: '/login'}),
+    function (req, res) {
         //res.redirect('/');
-        var payload = { foo: res.username };
+        var payload = {foo: res.username};
         var token = jwt.encode(payload, secret);
         console.log(token);
         res.json(token);
@@ -186,6 +185,35 @@ app.get('/', function (req, res) {
 
 });
 
+app.get('/get', function (req, res) {
+    console.log("Got a GET request for the homepage");
+    passport.authenticate('bearer', {session: false}),
+        function (req, res) {
+            console.log("id: "+req.user.id);
+            connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?",req.user.id, function (error, rows, fields) {
+                if (!!error) {
+                    console.log('Error in query' + error);
+                } else {
+                    console.log("Success");
+                    res.json(rows);
+                }
+            });
+            res.json(req.user);
+        }
+
+});
+
+passport.use('bearer',new BearerStrategy(
+    function (token, done) {
+        connection.query("SELECT * FROM login l where l.token=?", token, function (err, user) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                return done(null, user);
+            }
+        });
+    }
+));
 
 
 // This responds a POST request for the homepage
