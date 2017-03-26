@@ -81,11 +81,13 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-function addUser(user) {
+function addUser(user,callback) {
     console.log(user);
     connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
+            callback(error,null);
+
         } else {
             if (rows.length === 0) {
                 console.log("Rows" + rows.length + " " + user.email);
@@ -97,11 +99,13 @@ function addUser(user) {
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
+                        callback(null,result.insertId);
                     }
                 });
             }
             else {
-                console.log("User already exists in database");
+                console.log("User already exists in database")
+                callback(null,rows[0].id);
             }
         }
     });
@@ -113,10 +117,16 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-    var token = generateTokenSocial(user.id);
-    var post = {name: user.name, email: user.email, token: token};
-    addUser(post, token);
-    return done(null, post);
+    var post = {name: user.name, email: user.email, token: ''};
+    addUser(post,function (err, data) {
+        if (err)
+            ;
+        else {
+            var token = generateTokenSocial(data);
+            post.token=token;
+            return done(null, post);
+        }
+    });
 }));
 
 
@@ -144,11 +154,17 @@ passport.use('google-id-token', new GoogleTokenStrategy({
     },
     function (parsedToken, googleId, done) {
         var user = parsedToken.payload;
-        var token = generateTokenSocial(user.id);
-        var post = {id: user.id, name: user.name, email: user.email, token: token};
+        var post = {name: user.name, email: user.email, token: ''};
         console.log(googleId);
-        addUser(post);
-        return done(null, post);
+        addUser(post,function (err, data) {
+            if (err)
+                ;
+            else {
+                var token = generateTokenSocial(data);
+                post.token=token;
+                return done(null, post);
+            }
+        });
     }
 ));
 
@@ -327,7 +343,6 @@ app.get('/', function (req, res) {
 
 // This responds a POST request for the homepage
 app.post('/', function (req, res) {
-
     var decoded = jwt.decode(token, secret);
     console.log(decoded);
     console.log("Got a POST request for the homepage");
