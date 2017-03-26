@@ -222,8 +222,6 @@ app.post('/login',
     function (req, res) {
         //res.redirect('/');
         console.log(req.user);
-        var payload = {foo: req.user.username};
-        var token = jwt.encode(payload, secret);
         console.log(req.token);
         var user = {mail: req.user.username, password: req.user.password};
         addUser(user, req.token);
