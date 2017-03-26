@@ -15,7 +15,7 @@ var BearerStrategy = require('passport-http-bearer').Strategy;
 var url = require('url');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
-var authenticate = expressJwt({secret : 'shhhhhhared-secret'});
+var authenticate = expressJwt({secret: 'shhhhhhared-secret'});
 
 app.use(require('morgan')('combined'));
 
@@ -62,6 +62,7 @@ function handleDisconnect() {
             throw err;                                  // server variable configures this)
         }
     });
+
 }
 FACEBOOK_APP_ID = '1675013179474840';
 FACEBOOK_APP_SECRET = '0ca2793a038eba262f9768a83292a100';
@@ -80,34 +81,27 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-function addUser(user, token) {
+function addUser(user) {
     console.log(user);
-    connection.query("Select id from login where mail=?", [user.mail], function (error, rows, fields) {
+    connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
         } else {
             if (rows.length === 0) {
-                console.log("Rows" + rows.length + " " + user.mail);
+                console.log("Rows" + rows.length + " " + user.email);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, mail: user.mail, password: user.password, token: token};
+                var post = {name: user.name, email: user.email, password: user.password};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query inser' + error);
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
-                        user.id = result.insertId;
                     }
                 });
             }
             else {
-                connection.query("UPDATE LOGIN SET token=? where id=?", [token, rows[0].id], function (error, result) {
-                    if (!!error) {
-                        console.log('Error in query update' + error);
-                    } else {
-                        console.log("User already exists in database");
-                    }
-                });
+                console.log("User already exists in database");
             }
         }
     });
@@ -119,9 +113,9 @@ passport.use('facebook-token', new FacebookTokenStrategy({
 }, function (accessToken, refreshToken, profile, done) {
     console.log("facebook-token");
     var user = profile._json;
-
-    var post = {id: user.id, name: user.name, mail: user.email};
-    addUser(post, accessToken);
+    var token = generateTokenSocial(user.id);
+    var post = {name: user.name, email: user.email, token: token};
+    addUser(post, token);
     return done(null, post);
 }));
 
@@ -131,6 +125,7 @@ app.post('/auth/facebook/token',
     function (req, res) {
         // do something with req.user
         var user = req.user;
+
         console.log(user);
         //  res.send(req.user ? 200 : 401)
         res.json(user);
@@ -149,9 +144,10 @@ passport.use('google-id-token', new GoogleTokenStrategy({
     },
     function (parsedToken, googleId, done) {
         var user = parsedToken.payload;
-        var post = {id: user.id, name: user.name, mail: user.email};
+        var token = generateTokenSocial(user.id);
+        var post = {id: user.id, name: user.name, email: user.email, token: token};
         console.log(googleId);
-        addUser(post, googleId);
+        addUser(post);
         return done(null, post);
     }
 ));
@@ -171,35 +167,36 @@ app.post('/auth/google',
 handleDisconnect();
 
 //var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
-var secret = 'fe1a1915a379f3be5394b64d14794932';
+/*var secret = 'fe1a1915a379f3be5394b64d14794932';
 
 
-passport.use('localold', new LocalStrategy(
-    function (username, password, done) {
-        console.log("local");
-        var user = {username: username, password: password};
-        return done(null, user);
+ passport.use('localold', new LocalStrategy(
+ function (username, password, done) {
+ console.log("local");
+ var user = {username: username, password: password};
+ return done(null, user);
 
-    }
-));
+ }
+ ));
 
-app.get('/login',
-    function (req, res) {
-        console.log("fail");
-    });
+ app.get('/login',
+ function (req, res) {
+ console.log("fail");
+ });
 
-app.post('/loginold',
-    passport.authenticate('local', {failureRedirect: '/login'}),
-    function (req, res) {
-        //res.redirect('/');
-        console.log(req.user);
-        var payload = {foo: req.user.username};
-        var token = jwt.encode(payload, secret);
-        console.log(token);
-        var user = {mail: req.user.username, password: req.user.password};
-        addUser(user, token);
-        res.json(token);
-    });
+ app.post('/loginold',
+ passport.authenticate('local', {failureRedirect: '/login'}),
+ function (req, res) {
+ //res.redirect('/');
+ console.log(req.user);
+ var payload = {foo: req.user.username};
+ var token = jwt.encode(payload, secret);
+ console.log(token);
+ var user = {mail: req.user.username, password: req.user.password};
+ addUser(user, token);
+ res.json(token);
+ });
+ */
 
 passport.use('local', new LocalStrategy(
     function (username, password, done) {
@@ -229,9 +226,16 @@ function generateToken(req, res, next) {
     req.token = jwt.sign({
         id: req.user.id
     }, 'shhhhhhared-secret', {
-        expiresIn: 60*60*24
+        expiresIn: 60 * 60 * 24
     });
     next();
+}
+function generateTokenSocial(userid) {
+    return jwt.sign({
+        id: userid
+    }, 'shhhhhhared-secret', {
+        expiresIn: 60 * 60 * 24
+    });
 }
 
 
@@ -250,37 +254,38 @@ function generateToken(req, res, next) {
 
  });*/
 
-
-passport.use('bearer', new BearerStrategy(
-    function (token, done) {
-        console.log("Got bearer: " + token);
-        connection.query("SELECT * FROM login l where l.token=?", [token], function (error, user) {
-            if (!!error) {
-                console.log('Error in query' + error);
-            } else {
-                console.log('done' + user);
-                return done(null, user[0]);
-            }
-        });
-    }
-));
-
-
-app.get('/getold',
-    passport.authenticate('bearer', {session: false}),
-    function (req, res) {
-        console.log("id: " + req.user.id);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
-            if (!!error) {
-                console.log('Error in query' + error);
-            } else {
-                console.log("Success");
-                res.json(rows);
-            }
-        });
+/*
+ passport.use('bearer', new BearerStrategy(
+ function (token, done) {
+ console.log("Got bearer: " + token);
+ connection.query("SELECT * FROM login l where l.token=?", [token], function (error, user) {
+ if (!!error) {
+ console.log('Error in query' + error);
+ } else {
+ console.log('done' + user);
+ return done(null, user[0]);
+ }
+ });
+ }
+ ));
 
 
-    });
+ app.get('/getold',
+ passport.authenticate('bearer', {session: false}),
+ function (req, res) {
+ console.log("id: " + req.user.id);
+ connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+ if (!!error) {
+ console.log('Error in query' + error);
+ } else {
+ console.log("Success");
+ res.json(rows);
+ }
+ });
+
+
+ });
+ */
 
 app.get('/get',
     authenticate,
@@ -298,6 +303,21 @@ app.get('/get',
 
     });
 
+app.post('/',
+    authenticate,
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json();
+            }
+        });
+
+
+    });
 
 
 app.get('/', function (req, res) {
