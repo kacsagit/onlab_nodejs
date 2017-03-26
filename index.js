@@ -81,12 +81,12 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-function addUser(user,callback) {
+function addUser(user, callback) {
     console.log(user);
-    connection.query("Select id from login where mail=?", [user.email], function (error, rows, fields) {
+    connection.query("Select id from login where email=?", [user.email], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
-            callback(error,null);
+            callback(error, null);
 
         } else {
             if (rows.length === 0) {
@@ -99,13 +99,43 @@ function addUser(user,callback) {
                     } else {
                         console.log("Success");
                         console.log(result.insertId);
-                        callback(null,result.insertId);
+                        callback(null, result.insertId);
                     }
                 });
             }
             else {
                 console.log("User already exists in database")
-                callback(null,rows[0].id);
+                callback(null, rows[0].id);
+            }
+        }
+    });
+}
+
+function addUserSignUp(user, callback) {
+    console.log(user);
+    connection.query("Select id from login where email=?", [user.email], function (error, rows, fields) {
+        if (!!error) {
+            console.log('Error in query select email' + error);
+            callback(error, null);
+
+        } else {
+            if (rows.length === 0) {
+                console.log("Rows" + rows.length + " " + user.email);
+                console.log("There is no such user, adding now");
+                var post = {name: user.name, email: user.email, password: user.password};
+                connection.query("INSERT into login SET ?", post, function (error, result) {
+                    if (!!error) {
+                        console.log('Error in query inser' + error);
+                    } else {
+                        console.log("Success");
+                        console.log(result.insertId);
+                        callback(null, result.insertId);
+                    }
+                });
+            }
+            else {
+                console.log("User already exists in database")
+                callback(503, null);
             }
         }
     });
@@ -118,12 +148,12 @@ passport.use('facebook-token', new FacebookTokenStrategy({
     console.log("facebook-token");
     var user = profile._json;
     var post = {name: user.name, email: user.email, token: ''};
-    addUser(post,function (err, data) {
+    addUser(post, function (err, data) {
         if (err)
             ;
         else {
             var token = generateTokenSocial(data);
-            post.token=token;
+            post.token = token;
             return done(null, post);
         }
     });
@@ -156,12 +186,12 @@ passport.use('google-id-token', new GoogleTokenStrategy({
         var user = parsedToken.payload;
         var post = {name: user.name, email: user.email, token: ''};
         console.log(googleId);
-        addUser(post,function (err, data) {
+        addUser(post, function (err, data) {
             if (err)
                 ;
             else {
                 var token = generateTokenSocial(data);
-                post.token=token;
+                post.token = token;
                 return done(null, post);
             }
         });
@@ -218,16 +248,35 @@ passport.use('local', new LocalStrategy(
     function (username, password, done) {
         console.log("local");
         var user = {username: username, password: password};
-        connection.query("Select id from login where mail=?", [username], function (error, rows, fields) {
+        connection.query("Select id from login where email=? and password=?", [username, password], function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query select id' + error);
+                return done(503, null)
             } else {
+                if (rows.length === 0) {
+                     return done(503, null)
+                }
                 return done(null, rows[0])
             }
         });
     }
     )
 );
+
+
+app.post('/signup',
+    function (req, res) {
+        //res.redirect('/');
+        var user = req.body;
+        addUserSignUp(user, function (err, data) {
+            if (err)
+                res.json(err.statusCode);
+            else {
+                res.json(user);
+            }
+        });
+    });
+
 
 app.post('/login',
     passport.authenticate('local', {failureRedirect: '/login'}), generateToken,
