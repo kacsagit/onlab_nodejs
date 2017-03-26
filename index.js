@@ -113,16 +113,16 @@ function addUser(user, callback) {
 
 function addUserSignUp(user, callback) {
     console.log(user);
-    connection.query("Select id from login where email=?", [user.email], function (error, rows, fields) {
+    connection.query("Select id from login where email=?", [user.username], function (error, rows, fields) {
         if (!!error) {
             console.log('Error in query select email' + error);
             callback(error, null);
 
         } else {
             if (rows.length === 0) {
-                console.log("Rows" + rows.length + " " + user.email);
+                console.log("Rows" + rows.length + " " + user.username);
                 console.log("There is no such user, adding now");
-                var post = {name: user.name, email: user.email, password: user.password};
+                var post = {name: user.name, email: user.username, password: user.password};
                 connection.query("INSERT into login SET ?", post, function (error, result) {
                     if (!!error) {
                         console.log('Error in query inser' + error);
