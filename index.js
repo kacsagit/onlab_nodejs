@@ -8,14 +8,14 @@ var passport = require('passport');
 var FacebookTokenStrategy = require('passport-facebook-token');
 var LocalStrategy = require('passport-local').Strategy;
 var fbsdk = require('facebook-sdk');
-var jwt = require('jwt-simple');
+// var jwt = require('jwt-simple');
 var GoogleTokenStrategy = require('passport-google-id-token');
 var http = require("http");
 var BearerStrategy = require('passport-http-bearer').Strategy;
 var url = require('url');
 var jwt = require('jsonwebtoken');
-const expressJwt = require('express-jwt');
-const authenticate = expressJwt({secret : 'server secret'});
+var expressJwt = require('express-jwt');
+var authenticate = expressJwt({secret : 'shhhhhhared-secret'});
 
 app.use(require('morgan')('combined'));
 
@@ -233,7 +233,7 @@ app.post('/login',
 function generateToken(req, res, next) {
     req.token = jwt.sign({
         id: req.user.id
-    }, 'server secret', {
+    }, 'shhhhhhared-secret', {
         expiresIn: 60*60*24
     });
     next();
