@@ -212,12 +212,9 @@ passport.use('local', new LocalStrategy(
                 return done(null, rows[0])
             }
         });
-        return done(null, user);
-
     }
     )
 );
-
 
 app.post('/login',
     passport.authenticate('local', {failureRedirect: '/login'}), generateToken,
@@ -225,8 +222,6 @@ app.post('/login',
         //res.redirect('/');
         console.log(req.user);
         console.log(req.token);
-        var user = {mail: req.user.username, password: req.user.password};
-        addUser(user, req.token);
         res.json(req.token);
     });
 
