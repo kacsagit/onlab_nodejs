@@ -212,37 +212,7 @@ app.post('/auth/google',
 
 handleDisconnect();
 
-//var secret = Buffer.from('fe1a1915a379f3be5394b64d14794932', 'hex');
-/*var secret = 'fe1a1915a379f3be5394b64d14794932';
 
-
- passport.use('localold', new LocalStrategy(
- function (username, password, done) {
- console.log("local");
- var user = {username: username, password: password};
- return done(null, user);
-
- }
- ));
-
- app.get('/login',
- function (req, res) {
- console.log("fail");
- });
-
- app.post('/loginold',
- passport.authenticate('local', {failureRedirect: '/login'}),
- function (req, res) {
- //res.redirect('/');
- console.log(req.user);
- var payload = {foo: req.user.username};
- var token = jwt.encode(payload, secret);
- console.log(token);
- var user = {mail: req.user.username, password: req.user.password};
- addUser(user, token);
- res.json(token);
- });
- */
 
 passport.use('local', new LocalStrategy(
     function (username, password, done) {
@@ -304,53 +274,6 @@ function generateTokenSocial(userid) {
 }
 
 
-// This responds with "Hello World" on the homepage
-/*app.get('/', function (req, res) {
- console.log("Got a GET request for the homepage");
-
- connection.query("Select * from onlab", function (error, rows, fields) {
- if (!!error) {
- console.log('Error in query' + error);
- } else {
- console.log("Success");
- res.json(rows);
- }
- });
-
- });*/
-
-/*
- passport.use('bearer', new BearerStrategy(
- function (token, done) {
- console.log("Got bearer: " + token);
- connection.query("SELECT * FROM login l where l.token=?", [token], function (error, user) {
- if (!!error) {
- console.log('Error in query' + error);
- } else {
- console.log('done' + user);
- return done(null, user[0]);
- }
- });
- }
- ));
-
-
- app.get('/getold',
- passport.authenticate('bearer', {session: false}),
- function (req, res) {
- console.log("id: " + req.user.id);
- connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
- if (!!error) {
- console.log('Error in query' + error);
- } else {
- console.log("Success");
- res.json(rows);
- }
- });
-
-
- });
- */
 
 app.get('/get',
     authenticate,
@@ -368,21 +291,7 @@ app.get('/get',
 
     });
 
-app.post('/',
-    authenticate,
-    function (req, res) {
-        console.log("id: " + req.user);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
-            if (!!error) {
-                console.log('Error in query' + error);
-            } else {
-                console.log("Success");
-                res.json();
-            }
-        });
 
-
-    });
 
 
 app.get('/', function (req, res) {
@@ -391,14 +300,10 @@ app.get('/', function (req, res) {
 });
 
 // This responds a POST request for the homepage
-app.post('/', function (req, res) {
-    var decoded = jwt.decode(token, secret);
-    console.log(decoded);
-    console.log("Got a POST request for the homepage");
+app.post('/', authenticate, function (req, res) {
 
-    //res.send('Hello  POST');
-    console.log(req.body);
-    var post = {id: req.body.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
+    console.log("Got a POST request for the homepage");
+    var post = {id: req.user.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
     connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
