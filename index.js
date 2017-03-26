@@ -14,6 +14,8 @@ var http = require("http");
 var BearerStrategy = require('passport-http-bearer').Strategy;
 var url = require('url');
 var jwt = require('jsonwebtoken');
+const expressJwt = require('express-jwt');
+const authenticate = expressJwt({secret : 'server secret'});
 
 app.use(require('morgan')('combined'));
 
@@ -269,7 +271,7 @@ passport.use('bearer', new BearerStrategy(
 ));
 
 
-app.get('/get',
+app.get('/getold',
     passport.authenticate('bearer', {session: false}),
     function (req, res) {
         console.log("id: " + req.user.id);
@@ -284,6 +286,23 @@ app.get('/get',
 
 
     });
+
+app.get('/get',
+    authenticate,
+    function (req, res) {
+        console.log("id: " + req.user.id);
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+
+
+    });
+
 
 
 app.get('/', function (req, res) {
