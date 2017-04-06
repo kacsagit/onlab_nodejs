@@ -16,6 +16,8 @@ var url = require('url');
 var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var authenticate = expressJwt({secret: 'shhhhhhared-secret'});
+var apiRoutes = express.Router();
+
 
 app.use(require('morgan')('combined'));
 
@@ -29,6 +31,51 @@ app.use(bodyParser.json());
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+app.set('superSecret', "secretshhhh");
+
+apiRoutes.use(function(req, res, next) {
+
+    // check header or url parameters or post parameters for token
+    var token = req.body.token || req.query.token || req.headers['authorization'];
+
+    // decode token
+    if (token) {
+
+        // verifies secret and checks exp
+        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+            if (err) {
+                return res.json({ success: false, message: 'Failed to authenticate token.' });
+            } else {
+                // if everything is good, save to request for use in other routes
+                req.user = decoded;
+                var originalDecoded = jwt.decode(token, {complete: true});
+                var refreshed = jwt.refresh(originalDecoded, 3600, secret);
+                next();
+            }
+        });
+
+    } else {
+
+        // if there is no token
+        // return an error
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided.'
+        });
+
+    }
+
+});
+
+// route to show a random message (GET http://localhost:8080/api/)
+
+
+// route to return all users (GET http://localhost:8080/api/users)
+
+
+// apply the routes to our application with the prefix /api
+app.use('/api', apiRoutes);
+
 
 var db_config = {
 
@@ -261,7 +308,7 @@ app.post('/login',
 function generateToken(req, res, next) {
     req.token = jwt.sign({
         id: req.user.id
-    }, 'shhhhhhared-secret', {
+    }, app.get('superSecret'), {
         expiresIn: 60 * 60 * 24
     });
     next();
@@ -269,15 +316,14 @@ function generateToken(req, res, next) {
 function generateTokenSocial(userid) {
     return jwt.sign({
         id: userid
-    }, 'shhhhhhared-secret', {
+    }, app.get('superSecret'), {
         expiresIn: 60 * 60 * 24
     });
 }
 
 
 
-app.get('/get',
-    authenticate,
+app.get('/api/get',
     function (req, res) {
         console.log("id: " + req.user);
         connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
@@ -301,7 +347,7 @@ app.get('/', function (req, res) {
 });
 
 // This responds a POST request for the homepage
-app.post('/', authenticate, function (req, res) {
+app.post('/api',  function (req, res) {
 
     console.log("Got a POST request for the homepage");
     var post = {ownerid: req.user.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
