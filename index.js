@@ -49,7 +49,7 @@ apiRoutes.use(function(req, res, next) {
                 // if everything is good, save to request for use in other routes
                 req.user = decoded;
                 var originalDecoded = jwt.decode(token, {complete: true});
-                var refreshed = jwt.refresh(originalDecoded, 3600, secret);
+                var refreshed = jwt.refresh(originalDecoded, 3600, app.get('superSecret'));
                 next();
             }
         });
