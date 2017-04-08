@@ -384,7 +384,7 @@ app.post('/api/push', function (req, res) {
                 callback(error, null);
 
             } else {
-                if (rows.length != 0 && rows[0].deviceid!=null) {
+                if (rows.length != 0 && rows[0].deviceid != null) {
                     sendMessageToUser(rows[0].deviceid, "desfgh");
                 }
             }
@@ -405,9 +405,8 @@ function sendMessageToUser(deviceId, message) {
         },
         body: JSON.stringify(
             {
-                "notification": {
-                    "body": message,
-                    "title": "onlab"
+                "data": {
+                    "message": message
                 },
                 "to": deviceId
             }
