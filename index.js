@@ -17,6 +17,7 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var authenticate = expressJwt({secret: 'shhhhhhared-secret'});
 var apiRoutes = express.Router();
+var request = require('request');
 
 
 app.use(require('morgan')('combined'));
@@ -33,7 +34,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('superSecret', "secretshhhh");
 
-apiRoutes.use(function(req, res, next) {
+apiRoutes.use(function (req, res, next) {
 
     // check header or url parameters or post parameters for token
     var token = req.body.token || req.query.token || req.headers['authorization'];
@@ -42,14 +43,14 @@ apiRoutes.use(function(req, res, next) {
     if (token) {
 
         // verifies secret and checks exp
-        jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+        jwt.verify(token, app.get('superSecret'), function (err, decoded) {
             if (err) {
-                return res.json({ success: false, message: 'Failed to authenticate token.' });
+                return res.json({success: false, message: 'Failed to authenticate token.'});
             } else {
                 // if everything is good, save to request for use in other routes
                 req.user = decoded;
                 var originalDecoded = jwt.decode(token, {complete: true});
-             //   var refreshed = jwt.refresh(originalDecoded, 3600, app.get('superSecret'));
+                //   var refreshed = jwt.refresh(originalDecoded, 3600, app.get('superSecret'));
                 next();
             }
         });
@@ -261,7 +262,6 @@ app.post('/auth/google',
 handleDisconnect();
 
 
-
 passport.use('local', new LocalStrategy(
     function (username, password, done) {
         console.log("local");
@@ -272,7 +272,7 @@ passport.use('local', new LocalStrategy(
                 return done(503, null)
             } else {
                 if (rows.length === 0) {
-                     return done(503, null)
+                    return done(503, null)
                 }
                 return done(null, rows[0])
             }
@@ -322,7 +322,6 @@ function generateTokenSocial(userid) {
 }
 
 
-
 app.get('/api/get',
     function (req, res) {
         console.log("id: " + req.user);
@@ -339,18 +338,21 @@ app.get('/api/get',
     });
 
 
-
-
 app.get('/', function (req, res) {
 
 
 });
 
 // This responds a POST request for the homepage
-app.post('/api',  function (req, res) {
+app.post('/api', function (req, res) {
 
     console.log("Got a POST request for the homepage");
-    var post = {ownerid: req.user.id, latitude: req.body.latitude, longitude: req.body.longitude, place: req.body.place};
+    var post = {
+        ownerid: req.user.id,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        place: req.body.place
+    };
     connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
@@ -361,6 +363,66 @@ app.post('/api',  function (req, res) {
         }
     });
 });
+
+app.post('/api/device', function (req, res) {
+    connection.query("UPDATE login SET deviceid=? where id=?", [req.body.tokenid, req.user.id], function (error, result) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            console.log(req.user.id);
+            res.json(req.user.id);
+        }
+    });
+
+});
+
+app.post('/api/push', function (req, res) {
+    connection.query("SELECT deviceid from login where id=?", [req.body.id], function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query select deviceid' + error);
+                callback(error, null);
+
+            } else {
+                if (rows.length != 0 && rows[0].deviceid!=null) {
+                    sendMessageToUser(rows[0].deviceid, "desfgh");
+                }
+            }
+        }
+    );
+
+
+});
+
+
+function sendMessageToUser(deviceId, message) {
+    request({
+        url: 'https://fcm.googleapis.com/fcm/send',
+        method: 'POST',
+        headers: {
+            'Content-Type': ' application/json',
+            'Authorization': 'key=AAAAKbaLo5c:APA91bHvthkKLI2z_LtvFA7QdGavBLQsGIp2mnqIDf2RP-UQeRgyqhcko0_0cOGlNFSlS1fo34KVmhgtTvOqjEFJo5hCP34QmA3rqzJgJFqq1p2hxgoMDxpZOQvcEt-TufpLlNppkNsk'
+        },
+        body: JSON.stringify(
+            {
+                "data": {
+                    "message": message
+                },
+                "to": deviceId
+            }
+        )
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error, response, body);
+        }
+        else if (response.statusCode >= 400) {
+            console.error('HTTP Error: ' + response.statusCode + ' - ' + response.statusMessage + '\n' + body);
+        }
+        else {
+            console.log('Done!')
+        }
+    });
+}
 
 
 app.get('/cool', function (request, response) {
