@@ -325,7 +325,11 @@ function generateTokenSocial(userid) {
 app.get('/api/get',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid o.done" +
+            "FROM onlab o " +
+            "inner join friends f on o.ownerid=f.user_id2 " +
+            "where f.user_id1=?" +
+            "and where o.done=0", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -336,6 +340,22 @@ app.get('/api/get',
 
 
     });
+
+app.get('/api/getme',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid o.done FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+
+
+    });
+
 
 
 app.get('/', function (req, res) {
