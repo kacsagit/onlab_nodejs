@@ -401,12 +401,13 @@ function sendMessageToUser(deviceId, message) {
         method: 'POST',
         headers: {
             'Content-Type': ' application/json',
-            'Authorization': 'key=AAAAKbaLo5c:APA91bHvthkKLI2z_LtvFA7QdGavBLQsGIp2mnqIDf2RP-UQeRgyqhcko0_0cOGlNFSlS1fo34KVmhgtTvOqjEFJo5hCP34QmA3rqzJgJFqq1p2hxgoMDxpZOQvcEt-TufpLlNppkNsk'
+            'Authorization': 'key=AIzaSyASJpTfF0iPQ8EY1zdz8dw-fCwyKVr-xz8'
         },
         body: JSON.stringify(
             {
-                "data": {
-                    "message": message
+                "notification": {
+                    "body": message,
+                    "title": "onlab"
                 },
                 "to": deviceId
             }
