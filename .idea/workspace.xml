@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="346" column="83" lean-forward="false" selection-start-line="346" selection-start-column="83" selection-end-line="346" selection-end-column="83" />
+            <state relative-caret-position="188">
+              <caret line="330" column="32" lean-forward="false" selection-start-line="330" selection-start-column="32" selection-end-line="330" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -265,14 +265,7 @@
       <workItem from="1489931574557" duration="31411000" />
       <workItem from="1490531019305" duration="18991000" />
       <workItem from="1491505667492" duration="7558000" />
-      <workItem from="1491645054899" duration="9883000" />
-    </task>
-    <task id="LOCAL-00131" summary="logins">
-      <created>1489948820545</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1489948820545</updated>
+      <workItem from="1491645054899" duration="10057000" />
     </task>
     <task id="LOCAL-00132" summary="logins">
       <created>1489949277353</created>
@@ -610,11 +603,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491687808395</updated>
     </task>
-    <option name="localTasksCounter" value="180" />
+    <task id="LOCAL-00180" summary="freinds table">
+      <created>1491689755465</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1491689755465</updated>
+    </task>
+    <option name="localTasksCounter" value="181" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149999000" />
+    <option name="totallyTimeSpent" value="150173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -981,8 +981,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="346" column="83" lean-forward="false" selection-start-line="346" selection-start-column="83" selection-end-line="346" selection-end-column="83" />
+        <state relative-caret-position="188">
+          <caret line="330" column="32" lean-forward="false" selection-start-line="330" selection-start-column="32" selection-end-line="330" selection-end-column="32" />
           <folding />
         </state>
       </provider>

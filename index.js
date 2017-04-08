@@ -325,10 +325,10 @@ function generateTokenSocial(userid) {
 app.get('/api/get',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid o.done" +
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid, o.done " +
             "FROM onlab o " +
             "inner join friends f on o.ownerid=f.user_id2 " +
-            "where f.user_id1=?" +
+            "where f.user_id1=? " +
             "and where o.done=0", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
