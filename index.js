@@ -341,6 +341,21 @@ app.get('/api/get',
 
     });
 
+app.get('/api/getfriends',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT id,name FROM login l inner join friends f on f.user_id2=l.id where f.user_id1=?;", req.user.id, function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+
+
+    });
+
 app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
