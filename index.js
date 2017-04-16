@@ -341,6 +341,19 @@ app.get('/api/get',
 
     });
 
+app.get('/users',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("Select id,name from login", function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+    });
+
 app.get('/api/getme',
     function (req, res) {
         console.log("id: " + req.user);
