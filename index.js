@@ -341,7 +341,7 @@ app.get('/api/get',
 
     });
 
-app.get('/users',
+app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
         connection.query("Select id,name from login", function (error, rows, fields) {
@@ -353,7 +353,7 @@ app.get('/users',
             }
         });
     });
-app.get('/user',
+app.get('/api/user',
     function (req, res) {
         console.log("id: " + req.user);
         var id=req.query.id;
