@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="364" column="38" lean-forward="false" selection-start-line="364" selection-start-column="38" selection-end-line="364" selection-end-column="38" />
+            <state relative-caret-position="108">
+              <caret line="364" column="32" lean-forward="false" selection-start-line="364" selection-start-column="32" selection-end-line="364" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -85,6 +85,7 @@
       <find>sign</find>
       <find>payload</find>
       <find>req.body</find>
+      <find>rows.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -266,14 +267,7 @@
       <workItem from="1490531019305" duration="18991000" />
       <workItem from="1491505667492" duration="7558000" />
       <workItem from="1491645054899" duration="12171000" />
-      <workItem from="1492360692940" duration="2660000" />
-    </task>
-    <task id="LOCAL-00137" summary="logins">
-      <created>1489956556506</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1489956556506</updated>
+      <workItem from="1492360692940" duration="3214000" />
     </task>
     <task id="LOCAL-00138" summary="logins">
       <created>1489957015535</created>
@@ -611,11 +605,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492372314355</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="userbyid">
+      <created>1492375016168</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1492375016168</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154947000" />
+    <option name="totallyTimeSpent" value="155501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -985,8 +986,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="364" column="38" lean-forward="false" selection-start-line="364" selection-start-column="38" selection-end-line="364" selection-end-column="38" />
+        <state relative-caret-position="108">
+          <caret line="364" column="32" lean-forward="false" selection-start-line="364" selection-start-column="32" selection-end-line="364" selection-end-column="32" />
           <folding />
         </state>
       </provider>
