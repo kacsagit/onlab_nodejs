@@ -362,7 +362,7 @@ app.get('/api/user',
                 console.log('Error in query' + error);
             } else {
                 console.log("Success");
-                res.json(rows);
+                res.json(rows.get(0));
             }
         });
     });
