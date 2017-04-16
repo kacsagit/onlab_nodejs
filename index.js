@@ -353,6 +353,19 @@ app.get('/users',
             }
         });
     });
+app.get('/user',
+    function (req, res) {
+        console.log("id: " + req.user);
+        var id=req.query.id;
+        connection.query("Select id,name,email from login where id=?",[id], function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+    });
 
 app.get('/api/getme',
     function (req, res) {
