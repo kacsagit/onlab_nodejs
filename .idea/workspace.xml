@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="402" column="13" lean-forward="false" selection-start-line="402" selection-start-column="13" selection-end-line="402" selection-end-column="13" />
+            <state relative-caret-position="182">
+              <caret line="356" column="52" lean-forward="true" selection-start-line="356" selection-start-column="52" selection-end-line="356" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -69,7 +69,6 @@
       <find>Got bearer</find>
       <find>fb_lo</find>
       <find>error in</find>
-      <find>user</find>
       <find>got b</find>
       <find>generateTokenSocial</find>
       <find>mail</find>
@@ -86,6 +85,7 @@
       <find>payload</find>
       <find>req.body</find>
       <find>rows.</find>
+      <find>user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -267,14 +267,7 @@
       <workItem from="1490531019305" duration="18991000" />
       <workItem from="1491505667492" duration="7558000" />
       <workItem from="1491645054899" duration="12171000" />
-      <workItem from="1492360692940" duration="11697000" />
-    </task>
-    <task id="LOCAL-00150" summary="logins">
-      <created>1489961393755</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1489961393755</updated>
+      <workItem from="1492360692940" duration="13032000" />
     </task>
     <task id="LOCAL-00151" summary="logins">
       <created>1489961558585</created>
@@ -612,11 +605,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492441521249</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="friends">
+      <created>1492442048333</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1492442048333</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163984000" />
+    <option name="totallyTimeSpent" value="165319000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -705,12 +705,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>456</line>
+          <line>457</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>469</line>
+          <line>470</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -720,7 +720,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>487</line>
+          <line>488</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
@@ -981,8 +981,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="402" column="13" lean-forward="false" selection-start-line="402" selection-start-column="13" selection-end-line="402" selection-end-column="13" />
+        <state relative-caret-position="182">
+          <caret line="356" column="52" lean-forward="true" selection-start-line="356" selection-start-column="52" selection-end-line="356" selection-end-column="52" />
           <folding />
         </state>
       </provider>

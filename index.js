@@ -356,7 +356,8 @@ app.post('/api/addfirend',function (req, res) {
 
 app.delete('/api/deletefirend',function (req, res) {
     console.log("id: " + req.user);
-    connection.query("delete from friends where user_id1=? and user_id2=?;",[req.user.id,req.body.friend], function (error, result) {
+    var id=req.query.id;
+    connection.query("delete from friends where user_id1=? and user_id2=?;",[req.user.id,id], function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
