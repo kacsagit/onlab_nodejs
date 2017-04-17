@@ -359,7 +359,7 @@ app.get('/api/getfriends',
 app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("Select l.id,l.name from login l where l.id<>? group by l.id",req.user.id ,function (error, rows, fields) {
+        connection.query("Select l.id,l.name from login l where l.id<>?",req.user.id ,function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
