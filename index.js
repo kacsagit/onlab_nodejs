@@ -362,7 +362,7 @@ app.get('/api/users',
         connection.query("Select l.id,l.name, " +
             "CASE WHEN user_id2 IS NULL THEN 'False' ELSE 'True' END AS isfriend " +
             "from login l left join friends f on l.id=f.user_id2 " +
-            "where l.id<>2 group by l.id", function (error, rows, fields) {
+            "where l.id<>? group by l.id",req.user.id ,function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
