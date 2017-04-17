@@ -341,6 +341,19 @@ app.get('/api/get',
 
     });
 
+app.post('/api/addfirend',function (req, res) {
+    console.log("id: " + req.user);
+    connection.query("insert into friends(user_id1, user_id2) values (?,?);",[req.user.id,req.body.friend], function (error, result) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            console.log(result.insertId);
+            res.json(result.insertId);
+        }
+    });
+});
+
 app.get('/api/getfriends',
     function (req, res) {
         console.log("id: " + req.user);
