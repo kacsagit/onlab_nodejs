@@ -344,7 +344,7 @@ app.get('/api/get',
 app.get('/api/getfriends',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT id,name FROM login l inner join friends f on f.user_id2=l.id where f.user_id1=?;", req.user.id, function (error, rows, fields) {
+        connection.query("SELECT id,name,'true' as isfriend  FROM login l inner join friends f on f.user_id2=l.id where f.user_id1=?;", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -359,7 +359,10 @@ app.get('/api/getfriends',
 app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("Select id,name from login", function (error, rows, fields) {
+        connection.query("Select l.id,l.name, " +
+            "CASE WHEN user_id2 IS NULL THEN 'False' ELSE 'True' END AS isfriend " +
+            "from login l left join friends f on l.id=f.user_id2 " +
+            "where l.id<>2 group by l.id", function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -372,7 +375,9 @@ app.get('/api/user',
     function (req, res) {
         console.log("id: " + req.user);
         var id=req.query.id;
-        connection.query("Select id,name,email from login where id=?",[id], function (error, rows, fields) {
+        connection.query("Select l.id,l.name,l.email, CASE WHEN user_id2 IS NULL THEN 'False' ELSE 'True' END AS isfriend " +
+            " from login l left join friends f on l.id=f.user_id2  " +
+            "where l.id=?  group by l.id",[id], function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
