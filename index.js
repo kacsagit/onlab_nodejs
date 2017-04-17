@@ -354,6 +354,19 @@ app.post('/api/addfirend',function (req, res) {
     });
 });
 
+app.delete('/api/deletefirend',function (req, res) {
+    console.log("id: " + req.user);
+    connection.query("delete from friends where user_id1=? and user_id2=?;",[req.user.id,req.body.friend], function (error, result) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            console.log(result.insertId);
+            res.json(result.insertId);
+        }
+    });
+});
+
 app.get('/api/getfriends',
     function (req, res) {
         console.log("id: " + req.user);
