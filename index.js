@@ -18,15 +18,20 @@ var expressJwt = require('express-jwt');
 var authenticate = expressJwt({secret: 'shhhhhhared-secret'});
 var apiRoutes = express.Router();
 var request = require('request');
+var util = require('util');
+var multer = require('multer')
+var upload = multer({dest: 'uploads/'})
+var path = require('path')
+var crypto = require('crypto')
 
 
 app.use(require('morgan')('combined'));
 
 app.set('port', (process.env.PORT || 5000));
-
 app.use(express.static(__dirname + '/public'));
 // parse application/json
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true, keepExtensions: true, uploadDir: __dirname + '/public/uploads'}));
 
 
 // views is directory for all template files
@@ -341,9 +346,9 @@ app.get('/api/get',
 
     });
 
-app.post('/api/addfirend',function (req, res) {
+app.post('/api/addfirend', function (req, res) {
     console.log("id: " + req.user);
-    connection.query("insert into friends(user_id1, user_id2) values (?,?);",[req.user.id,req.body.friend], function (error, result) {
+    connection.query("insert into friends(user_id1, user_id2) values (?,?);", [req.user.id, req.body.friend], function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
@@ -354,10 +359,10 @@ app.post('/api/addfirend',function (req, res) {
     });
 });
 
-app.delete('/api/deletefirend',function (req, res) {
+app.delete('/api/deletefirend', function (req, res) {
     console.log("id: " + req.user);
-    var id=req.query.id;
-    connection.query("delete from friends where user_id1=? and user_id2=?;",[req.user.id,id], function (error, result) {
+    var id = req.query.id;
+    connection.query("delete from friends where user_id1=? and user_id2=?;", [req.user.id, id], function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
@@ -386,7 +391,7 @@ app.get('/api/getfriends',
 app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("Select l.id,l.name from login l where l.id<>?",req.user.id ,function (error, rows, fields) {
+        connection.query("Select l.id,l.name from login l where l.id<>?", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -398,10 +403,10 @@ app.get('/api/users',
 app.get('/api/user',
     function (req, res) {
         console.log("id: " + req.user);
-        var id=req.query.id;
+        var id = req.query.id;
         connection.query("Select l.id,l.name,l.email, CASE WHEN user_id2 IS NULL THEN false ELSE true END AS isfriend " +
             " from login l left join (select * from friends where user_id1=?) f " +
-            "on l.id=f.user_id2  where l.id=? group by l.id",[req.user.id,id], function (error, rows, fields) {
+            "on l.id=f.user_id2  where l.id=? group by l.id", [req.user.id, id], function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -425,7 +430,6 @@ app.get('/api/getme',
 
 
     });
-
 
 
 app.get('/', function (req, res) {
@@ -513,6 +517,53 @@ function sendMessageToUser(deviceId, message) {
         }
     });
 }
+
+
+exports.imageForm = function (req, res) {
+    res.render('upload', {
+        title: 'Upload Images'
+    });
+};
+
+
+var storage = multer.diskStorage({
+    destination: './uploads/',
+    filename: function (req, file, cb) {
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+            if (err) return cb(err)
+            var ext = path.extname(file.originalname)
+            if (ext == ".jpg" || ext == ".png")
+                cb(null, raw.toString('hex') + ext)
+            else {
+                var error = new Error();
+                error.status = 500;
+                cb(error)
+            }
+        })
+    }
+});
+
+var upload1 = multer({storage: storage})
+
+
+//app.get('/upload', imageForm);
+app.post('/upload', upload1.single('avatar'), function (req, res, next) {
+    console.log('file info: ', req.file);
+
+    //split the url into an array and then get the last chunk and render it out in the send req.
+    var pathArray = req.file.path.split('/');
+
+    res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'
+        , req.file.name
+        , req.file.size / 1024 | 0
+        , req.file.path
+        , req.body.title
+        , req.file
+        , '<img src="uploads/' + pathArray[(pathArray.length - 1)] + '">'
+    ));
+
+
+});
 
 
 app.get('/cool', function (request, response) {
