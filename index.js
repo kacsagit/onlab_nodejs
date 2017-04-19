@@ -562,15 +562,37 @@ app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
         }
     });
     /*res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'
-        , req.file.name
-        , req.file.size / 1024 | 0
-        , req.file.path
-        , req.body.title
-        , req.file
-        , '<img src="uploads/' + pathArray[(pathArray.length - 1)] + '">'
-    ));*/
+     , req.file.name
+     , req.file.size / 1024 | 0
+     , req.file.path
+     , req.body.title
+     , req.file
+     , '<img src="uploads/' + pathArray[(pathArray.length - 1)] + '">'
+     ));*/
 
 
+});
+
+app.get('/image', function (req, res) {
+    console.log("id: " + req.user);
+    var id = req.query.id;
+    connection.query("SELECT image FROM login where id=? and image is not null", [req.query.id], function (error, rows, fields) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            if (rows.length === 0) {
+                res.status(500).send('empty')
+            } else
+                res.sendfile(rows[0].image);
+        }
+    });
+
+});
+
+app.get('/api/image', function (req, res) {
+    var id = req.query.image;
+    res.sendfile(req.query.image);
 });
 
 
