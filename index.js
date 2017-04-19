@@ -552,7 +552,7 @@ app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
 
     //split the url into an array and then get the last chunk and render it out in the send req.
     var pathArray = req.file.path.split('/');
-    connection.query("UPDATE login SET image=? where id=?", [pathArray[(pathArray.length - 1)], req.user.id], function (error, result) {
+    connection.query("UPDATE login SET image=? where id=?", [req.file.path, req.user.id], function (error, result) {
         if (!!error) {
             console.log('Error in query' + error);
         } else {
