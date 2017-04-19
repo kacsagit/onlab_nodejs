@@ -547,20 +547,28 @@ var upload1 = multer({storage: storage})
 
 
 //app.get('/upload', imageForm);
-app.post('/upload', upload1.single('avatar'), function (req, res, next) {
+app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
     console.log('file info: ', req.file);
 
     //split the url into an array and then get the last chunk and render it out in the send req.
     var pathArray = req.file.path.split('/');
-
-    res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'
+    connection.query("UPDATE login SET image=? where id=?", [pathArray[(pathArray.length - 1)], req.user.id], function (error, result) {
+        if (!!error) {
+            console.log('Error in query' + error);
+        } else {
+            console.log("Success");
+            console.log(req.user.id);
+            res.json(req.user.id);
+        }
+    });
+    /*res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'
         , req.file.name
         , req.file.size / 1024 | 0
         , req.file.path
         , req.body.title
         , req.file
         , '<img src="uploads/' + pathArray[(pathArray.length - 1)] + '">'
-    ));
+    ));*/
 
 
 });

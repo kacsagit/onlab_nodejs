@@ -4,7 +4,6 @@
     <list default="true" id="e4039efb-7f56-4c65-90f1-b2c328b0d15b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,12 +24,9 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
+            <state relative-caret-position="578">
               <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-              <folding>
-                <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-                <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -38,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="801">
-              <caret line="565" column="3" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="565" selection-end-column="3" />
+            <state relative-caret-position="520">
+              <caret line="570" column="9" lean-forward="false" selection-start-line="570" selection-start-column="9" selection-end-line="570" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -48,7 +44,7 @@
       <file leaf-file-name="disk.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/multer/storage/disk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="561">
               <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding />
             </state>
@@ -281,14 +277,8 @@
       <workItem from="1490531019305" duration="18991000" />
       <workItem from="1491505667492" duration="7558000" />
       <workItem from="1491645054899" duration="12171000" />
-      <workItem from="1492360692940" duration="21563000" />
-    </task>
-    <task id="LOCAL-00152" summary="logins">
-      <created>1489961666711</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1489961666711</updated>
+      <workItem from="1492360692940" duration="22353000" />
+      <workItem from="1492630781766" duration="2010000" />
     </task>
     <task id="LOCAL-00153" summary="logins">
       <created>1489961750770</created>
@@ -626,26 +616,33 @@
       <option name="project" value="LOCAL" />
       <updated>1492444428717</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="upload image">
+      <created>1492555565815</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1492555565816</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173850000" />
+    <option name="totallyTimeSpent" value="176650000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.134375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18854167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2463002" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2463002" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39852008" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34858045" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -702,7 +699,8 @@
     <MESSAGE value="freinds table" />
     <MESSAGE value="userbyid" />
     <MESSAGE value="friends" />
-    <option name="LAST_COMMIT_MESSAGE" value="friends" />
+    <MESSAGE value="upload image" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -739,14 +737,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>555</line>
-          <properties />
+          <line>563</line>
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
           <line>535</line>
-          <properties />
           <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
@@ -775,10 +771,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,10 +787,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -813,10 +803,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="33" column="1" lean-forward="false" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -832,10 +819,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -854,10 +838,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -869,10 +850,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -884,10 +862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -899,10 +874,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="15" lean-forward="false" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -982,6 +954,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/multer/lib/make-error.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/raw-body/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="195" column="16" lean-forward="false" selection-start-line="195" selection-start-column="16" selection-end-line="195" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="570" column="9" lean-forward="false" selection-start-line="570" selection-start-column="9" selection-end-line="570" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/multer/storage/disk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/mysql/lib/protocol/Protocol.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1836">
@@ -994,49 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <marker date="1492554278667" expanded="true" signature="940:1027" ph="{&quot;type&quot;: &quot;git&quot;...}" />
-            <marker date="1492554278667" expanded="true" signature="1043:1088" ph="[...]" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/multer/lib/make-error.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/raw-body/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="195" column="16" lean-forward="false" selection-start-line="195" selection-start-column="16" selection-end-line="195" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/multer/storage/disk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="33" column="9" lean-forward="false" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="801">
-          <caret line="565" column="3" lean-forward="true" selection-start-line="564" selection-start-column="0" selection-end-line="565" selection-end-column="3" />
           <folding />
         </state>
       </provider>
