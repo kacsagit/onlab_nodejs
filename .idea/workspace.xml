@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="593" column="29" lean-forward="true" selection-start-line="593" selection-start-column="29" selection-end-line="593" selection-end-column="29" />
+            <state relative-caret-position="369">
+              <caret line="594" column="34" lean-forward="true" selection-start-line="594" selection-start-column="34" selection-end-line="594" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -281,21 +281,7 @@
       <workItem from="1491645054899" duration="12171000" />
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
-      <workItem from="1492940286084" duration="4884000" />
-    </task>
-    <task id="LOCAL-00161" summary="tokens">
-      <created>1490539560476</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1490539560476</updated>
-    </task>
-    <task id="LOCAL-00162" summary="tokens">
-      <created>1490539801201</created>
-      <option name="number" value="00162" />
-      <option name="presentableId" value="LOCAL-00162" />
-      <option name="project" value="LOCAL" />
-      <updated>1490539801202</updated>
+      <workItem from="1492940286084" duration="5440000" />
     </task>
     <task id="LOCAL-00163" summary="tokens">
       <created>1490540972709</created>
@@ -626,11 +612,25 @@
       <option name="project" value="LOCAL" />
       <updated>1492954228434</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="upload image">
+      <created>1492954439578</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1492954439578</updated>
+    </task>
+    <task id="LOCAL-00211" summary="upload image">
+      <created>1492954713952</created>
+      <option name="number" value="00211" />
+      <option name="presentableId" value="LOCAL-00211" />
+      <option name="project" value="LOCAL" />
+      <updated>1492954713955</updated>
+    </task>
+    <option name="localTasksCounter" value="212" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185559000" />
+    <option name="totallyTimeSpent" value="186115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -770,11 +770,17 @@
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.js</url>
+          <line>592</line>
+          <properties />
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="83" />
+      <option name="time" value="84" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1003,8 +1009,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="593" column="29" lean-forward="true" selection-start-line="593" selection-start-column="29" selection-end-line="593" selection-end-column="29" />
+        <state relative-caret-position="369">
+          <caret line="594" column="34" lean-forward="true" selection-start-line="594" selection-start-column="34" selection-end-line="594" selection-end-column="34" />
           <folding />
         </state>
       </provider>
