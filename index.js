@@ -376,7 +376,7 @@ app.delete('/api/deletefirend', function (req, res) {
 app.get('/api/getfriends',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT id,name,true as isfriend  FROM login l inner join friends f on f.user_id2=l.id where f.user_id1=?;", req.user.id, function (error, rows, fields) {
+        connection.query("SELECT id,name,image,true as isfriend  FROM login l inner join friends f on f.user_id2=l.id where f.user_id1=?;", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -391,7 +391,7 @@ app.get('/api/getfriends',
 app.get('/api/users',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("Select l.id,l.name from login l where l.id<>?", req.user.id, function (error, rows, fields) {
+        connection.query("Select l.id,l.name,l.image from login l where l.id<>?", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -404,7 +404,7 @@ app.get('/api/user',
     function (req, res) {
         console.log("id: " + req.user);
         var id = req.query.id;
-        connection.query("Select l.id,l.name,l.email, CASE WHEN user_id2 IS NULL THEN false ELSE true END AS isfriend " +
+        connection.query("Select l.id,l.name,l.email,image, CASE WHEN user_id2 IS NULL THEN false ELSE true END AS isfriend " +
             " from login l left join (select * from friends where user_id1=?) f " +
             "on l.id=f.user_id2  where l.id=? group by l.id", [req.user.id, id], function (error, rows, fields) {
             if (!!error) {
