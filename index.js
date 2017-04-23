@@ -590,7 +590,7 @@ app.get('/api/imagebyid', function (req, res) {
 
 });
 
-app.get('/api/image', function (req, res) {
+app.get('/image', function (req, res) {
     var id = req.query.image;
     res.sendfile(req.query.image);
 });
