@@ -374,6 +374,32 @@ app.delete('/api/deletefirend', function (req, res) {
     });
 });
 
+app.get('/api/me',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT id,name,image,true as isfriend  FROM login l where  l.id=?;", [req.user.id], function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows[0]);
+            }
+        });
+    });
+
+app.get('/api/medetails',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT l.id,l.name,l.email,image,true as isfriend  FROM login l where  l.id=?;", [req.user.id], function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows[0]);
+            }
+        });
+    });
+
 app.get('/api/getfriends',
     function (req, res) {
         console.log("id: " + req.user);
