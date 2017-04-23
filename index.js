@@ -573,7 +573,7 @@ app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
 
 });
 
-app.get('/api/image', function (req, res) {
+app.get('/api/imagebyid', function (req, res) {
     console.log("id: " + req.user);
     var id = req.query.id;
     connection.query("SELECT image FROM login where id=? and image is not null", [req.query.id], function (error, rows, fields) {
@@ -590,7 +590,7 @@ app.get('/api/image', function (req, res) {
 
 });
 
-app.get('/image', function (req, res) {
+app.get('api/image', function (req, res) {
     var id = req.query.image;
     res.sendfile(req.query.image);
 });
