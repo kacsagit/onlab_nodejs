@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="378" column="140" lean-forward="false" selection-start-line="378" selection-start-column="140" selection-end-line="378" selection-end-column="140" />
+            <state relative-caret-position="386">
+              <caret line="337" column="51" lean-forward="false" selection-start-line="337" selection-start-column="51" selection-end-line="337" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -281,14 +281,7 @@
       <workItem from="1491645054899" duration="12171000" />
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
-      <workItem from="1492940286084" duration="6927000" />
-    </task>
-    <task id="LOCAL-00165" summary="tokens">
-      <created>1490548683304</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1490548683304</updated>
+      <workItem from="1492940286084" duration="9819000" />
     </task>
     <task id="LOCAL-00166" summary="tokens">
       <created>1490549897545</created>
@@ -626,11 +619,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492956455941</updated>
     </task>
-    <option name="localTasksCounter" value="214" />
+    <task id="LOCAL-00214" summary="upload image">
+      <created>1492959053066</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1492959053066</updated>
+    </task>
+    <option name="localTasksCounter" value="215" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187602000" />
+    <option name="totallyTimeSpent" value="190494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -720,12 +720,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>461</line>
+          <line>460</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>474</line>
+          <line>473</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -735,44 +735,44 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>492</line>
+          <line>491</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>563</line>
+          <line>562</line>
           <option name="timeStamp" value="77" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>535</line>
+          <line>534</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>554</line>
+          <line>553</line>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>586</line>
+          <line>585</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>594</line>
+          <line>593</line>
           <properties />
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>576</line>
+          <line>575</line>
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/index.js</url>
-          <line>592</line>
+          <line>591</line>
           <properties />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
@@ -1009,8 +1009,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="378" column="140" lean-forward="false" selection-start-line="378" selection-start-column="140" selection-end-line="378" selection-end-column="140" />
+        <state relative-caret-position="386">
+          <caret line="337" column="51" lean-forward="false" selection-start-line="337" selection-start-column="51" selection-end-line="337" selection-end-column="51" />
           <folding />
         </state>
       </provider>

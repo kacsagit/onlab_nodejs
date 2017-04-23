@@ -334,7 +334,8 @@ app.get('/api/get',
             "FROM onlab o " +
             "inner join friends f on o.ownerid=f.user_id2 " +
             "where f.user_id1=? " +
-            "and o.done=0", req.user.id, function (error, rows, fields) {
+            "and o.done=0" +
+            "and f.id<>?", [req.user.id,req.user.id], function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
@@ -384,8 +385,6 @@ app.get('/api/getfriends',
                 res.json(rows);
             }
         });
-
-
     });
 
 app.get('/api/users',
