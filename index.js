@@ -617,12 +617,12 @@ app.get('/api/imagebyid', function (req, res) {
 
 app.get('/api/image', function (req, res) {
     var id = req.query.image;
-    res.sendfile(req.query.image).resize(200, 200);
+    res.sendfile(req.query.image);
 });
 
 app.get('/image', function (req, res) {
     var id = req.query.image;
-    res.sendfile(req.query.image).resize(200, 200);
+    res.sendfile(req.query.image);
 });
 
 
