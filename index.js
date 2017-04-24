@@ -327,15 +327,32 @@ function generateTokenSocial(userid) {
 }
 
 
+app.get('/api/getall',
+    function (req, res) {
+        console.log("id: " + req.user);
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid,o.description, o.done,l.image " +
+            "FROM onlab o inner join friends f on o.ownerid=f.user_id2  " +
+            "inner join login l on o.ownerid=l.id " +
+            "where f.user_id1=? and o.done=0 and o.ownerid<>?;", [req.user.id,req.user.id], function (error, rows, fields) {
+            if (!!error) {
+                console.log('Error in query' + error);
+            } else {
+                console.log("Success");
+                res.json(rows);
+            }
+        });
+
+
+    });
+
+
 app.get('/api/get',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid, o.done " +
-            "FROM onlab o " +
-            "inner join friends f on o.ownerid=f.user_id2 " +
-            "where f.user_id1=? " +
-            "and o.done=0 " +
-            "and o.ownerid<>?;", [req.user.id,req.user.id], function (error, rows, fields) {
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place,l.image " +
+            "FROM onlab o inner join friends f on o.ownerid=f.user_id2  " +
+            "inner join login l on o.ownerid=l.id " +
+            "where f.user_id1=? and o.done=0 and o.ownerid<>?;", [req.user.id,req.user.id], function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
