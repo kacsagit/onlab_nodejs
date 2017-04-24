@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="350" column="39" lean-forward="true" selection-start-line="350" selection-start-column="39" selection-end-line="350" selection-end-column="39" />
+            <state relative-caret-position="326">
+              <caret line="576" column="62" lean-forward="false" selection-start-line="576" selection-start-column="62" selection-end-line="576" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -285,14 +285,7 @@
       <workItem from="1491645054899" duration="12171000" />
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
-      <workItem from="1492940286084" duration="17029000" />
-    </task>
-    <task id="LOCAL-00174" summary="new api for tokens, refresh token">
-      <created>1491512079067</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1491512079067</updated>
+      <workItem from="1492940286084" duration="17687000" />
     </task>
     <task id="LOCAL-00175" summary="push notif">
       <created>1491651188089</created>
@@ -630,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493065622955</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="upload image">
+      <created>1493066527972</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1493066527972</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197704000" />
+    <option name="totallyTimeSpent" value="198362000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1001,8 +1001,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="350" column="39" lean-forward="true" selection-start-line="350" selection-start-column="39" selection-end-line="350" selection-end-column="39" />
+        <state relative-caret-position="326">
+          <caret line="576" column="62" lean-forward="false" selection-start-line="576" selection-start-column="62" selection-end-line="576" selection-end-column="62" />
           <folding />
         </state>
       </provider>

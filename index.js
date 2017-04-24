@@ -574,7 +574,7 @@ var storage = multer.diskStorage({
         crypto.pseudoRandomBytes(16, function (err, raw) {
             if (err) return cb(err)
             var ext = path.extname(file.originalname)
-            if (ext == ".jpg" || ext == ".png")
+            if (ext == ".jpg" || ext == ".png" || ext ==".jpeg")
                 cb(null, raw.toString('hex') + ext)
             else {
                 var error = new Error();
