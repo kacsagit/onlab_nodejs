@@ -23,6 +23,7 @@ var multer = require('multer')
 var upload = multer({dest: 'uploads/'})
 var path = require('path')
 var crypto = require('crypto')
+var Jimp = require("jimp");
 
 
 app.use(require('morgan')('combined'));
@@ -589,19 +590,20 @@ var storage = multer.diskStorage({
 
 var upload1 = multer({storage: storage})
 
-var Jimp = require("jimp");
+
+
 
 
 //app.get('/upload', imageForm);
 app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
     console.log('file info: ', req.file);
     console.log('file info: ', "saddddddddddddddddd");
-    Jimp.read(req.file.path, function (err, lenna) {
+   /* Jimp.read(req.file.path, function (err, lenna) {
         if (err) throw err;
         lenna.resize(256, 256)            // resize
             .quality(60)                 // set JPEG quality
             .write(req.file.path); // save
-    });
+    });*/
 
     //split the url into an array and then get the last chunk and render it out in the send req.
     var pathArray = req.file.path.split('/');
