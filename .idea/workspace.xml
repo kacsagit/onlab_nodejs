@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e4039efb-7f56-4c65-90f1-b2c328b0d15b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -285,14 +284,7 @@
       <workItem from="1491645054899" duration="12171000" />
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
-      <workItem from="1492940286084" duration="25759000" />
-    </task>
-    <task id="LOCAL-00180" summary="freinds table">
-      <created>1491689755465</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1491689755465</updated>
+      <workItem from="1492940286084" duration="25794000" />
     </task>
     <task id="LOCAL-00181" summary="freinds table">
       <created>1491689931384</created>
@@ -630,11 +622,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493476588070</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="upload image">
+      <created>1493477283016</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1493477283016</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206434000" />
+    <option name="totallyTimeSpent" value="206469000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
