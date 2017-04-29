@@ -600,7 +600,7 @@ app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
     console.log('file info: ', "saddddddddddddddddd");
     Jimp.read(req.file.path, function (err, lenna) {
         if (err) throw err;
-        lenna.resize(256, 256)            // resize
+        lenna.resize(200, 200)  // resize
             .quality(60)                 // set JPEG quality
             .write(req.file.path); // save
     });
