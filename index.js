@@ -595,7 +595,7 @@ var Jimp = require("jimp");
 //app.get('/upload', imageForm);
 app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
     console.log('file info: ', req.file);
-
+    console.log('file info: ', "saddddddddddddddddd");
     Jimp.read(req.file.path, function (err, lenna) {
         if (err) throw err;
         lenna.resize(256, 256)            // resize

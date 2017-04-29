@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="647" column="52" lean-forward="true" selection-start-line="647" selection-start-column="52" selection-end-line="647" selection-end-column="52" />
+            <state relative-caret-position="126">
+              <caret line="597" column="52" lean-forward="false" selection-start-line="597" selection-start-column="52" selection-end-line="597" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -285,14 +285,7 @@
       <workItem from="1491645054899" duration="12171000" />
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
-      <workItem from="1492940286084" duration="24284000" />
-    </task>
-    <task id="LOCAL-00178" summary="push notif">
-      <created>1491655754733</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1491655754733</updated>
+      <workItem from="1492940286084" duration="25065000" />
     </task>
     <task id="LOCAL-00179" summary="freinds table">
       <created>1491687808395</created>
@@ -630,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493474151816</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="upload image">
+      <created>1493475828921</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1493475828921</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="204959000" />
+    <option name="totallyTimeSpent" value="205740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -758,11 +758,23 @@
           <properties />
           <option name="timeStamp" value="82" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.js</url>
+          <line>598</line>
+          <properties />
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/index.js</url>
+          <line>607</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="85" />
+      <option name="time" value="87" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -1015,8 +1027,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="647" column="52" lean-forward="true" selection-start-line="647" selection-start-column="52" selection-end-line="647" selection-end-column="52" />
+        <state relative-caret-position="126">
+          <caret line="597" column="52" lean-forward="false" selection-start-line="597" selection-start-column="52" selection-end-line="597" selection-end-column="52" />
           <folding />
         </state>
       </provider>
