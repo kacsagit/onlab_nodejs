@@ -615,7 +615,7 @@ app.post('/api/upload', upload1.single('avatar'), function (req, res, next) {
         } else {
             console.log("Success");
             console.log(req.user.id);
-            res.json(req.user.id);
+            res.json(encodeURIComponent(req.file.path));
         }
     });
     /*res.send(util.format(' Task Complete \n uploaded %s (%d Kb) to %s as %s'

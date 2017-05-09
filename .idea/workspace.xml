@@ -34,8 +34,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="464" column="92" lean-forward="false" selection-start-line="464" selection-start-column="92" selection-end-line="464" selection-end-column="92" />
+            <state relative-caret-position="436">
+              <caret line="617" column="56" lean-forward="true" selection-start-line="617" selection-start-column="56" selection-end-line="617" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -75,7 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>welcome</find>
       <find>Got bearer</find>
       <find>fb_lo</find>
       <find>error in</find>
@@ -105,6 +104,7 @@
       <find>select id</find>
       <find>Error in query select id</find>
       <find>my</find>
+      <find>image</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -289,14 +289,7 @@
       <workItem from="1492360692940" duration="22353000" />
       <workItem from="1492630781766" duration="6035000" />
       <workItem from="1492940286084" duration="28726000" />
-      <workItem from="1494067797201" duration="8449000" />
-    </task>
-    <task id="LOCAL-00187" summary="userbyid">
-      <created>1492375570686</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1492375570689</updated>
+      <workItem from="1494067797201" duration="8968000" />
     </task>
     <task id="LOCAL-00188" summary="friends">
       <created>1492377149438</created>
@@ -634,11 +627,18 @@
       <option name="project" value="LOCAL" />
       <updated>1494367053528</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="post update">
+      <created>1494367236785</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1494367236785</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217850000" />
+    <option name="totallyTimeSpent" value="218369000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1029,8 +1029,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="464" column="92" lean-forward="false" selection-start-line="464" selection-start-column="92" selection-end-line="464" selection-end-column="92" />
+        <state relative-caret-position="436">
+          <caret line="617" column="56" lean-forward="true" selection-start-line="617" selection-start-column="56" selection-end-line="617" selection-end-column="56" />
           <folding />
         </state>
       </provider>
