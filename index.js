@@ -462,7 +462,7 @@ app.get('/api/user',
 app.get('/api/getme',
     function (req, res) {
         console.log("id: " + req.user);
-        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid, o.done,o.image FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
+        connection.query("SELECT o.id, o.latitude, o.longitude, o.place, o.ownerid, o.done,l.image FROM onlab o inner join login l on l.id=ownerid where l.id=?", req.user.id, function (error, rows, fields) {
             if (!!error) {
                 console.log('Error in query' + error);
             } else {
