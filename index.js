@@ -488,7 +488,8 @@ app.post('/api', function (req, res) {
         ownerid: req.user.id,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
-        place: req.body.place
+        place: req.body.place,
+        description : req.body.description
     };
     connection.query("INSERT INTO onlab SET ?", post, function (error, result) {
         if (!!error) {
@@ -523,6 +524,7 @@ app.post('/api/push', function (req, res) {
             } else {
                 if (rows.length != 0 && rows[0].deviceid != null) {
                     sendMessageToUser(rows[0].deviceid, "desfgh");
+                    res.json(req.body.id);
                 }
             }
         }
